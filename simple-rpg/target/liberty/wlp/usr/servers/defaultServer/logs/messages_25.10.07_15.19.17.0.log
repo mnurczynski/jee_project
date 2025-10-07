@@ -1,0 +1,49 @@
+********************************************************************************
+product = Open Liberty 25.0.0.10 (wlp-1.0.106.cl251020250923-1355)
+wlp.install.dir = /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/
+java.home = /usr/lib/jvm/java-17-openjdk-amd64
+java.version = 17.0.16
+java.runtime = OpenJDK Runtime Environment (17.0.16+8-Ubuntu-0ubuntu122.04.1)
+os = Linux (6.8.0-65-generic; amd64) (pl_PL)
+process = 24556@des06.kask.eti.pg.gda.pl
+Classpath = /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/bin/tools/ws-server.jar
+Java Library path = /usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+********************************************************************************
+[07.10.2025, 15:18:00:459 CEST] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0001I: Serwer defaultServer został uruchomiony.
+[07.10.2025, 15:18:00:646 CEST] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           I CWWKE0002I: Jądro zostało uruchomione po 0,272 sek. s
+[07.10.2025, 15:18:00:649 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0007I: Uruchomiono aktualizację składnika.
+[07.10.2025, 15:18:00:705 CEST] 00000024 com.ibm.ws.app.manager.internal.monitor.DropinMonitor        A CWWKZ0058I: Monitorowanie aplikacji w katalogu dropins.
+[07.10.2025, 15:18:00:785 CEST] 00000036 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Uruchamianie aplikacji simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:18:00:786 CEST] 00000036 bm.ws.app.manager.war.internal.WARDeployedAppInfoFactoryImpl I CWWKZ0134I: Aplikacja simple-rpg-1.0-SNAPSHOT używa luźnej definicji aplikacji w położeniu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/dropins/simple-rpg-1.0-SNAPSHOT.war.xml.
+[07.10.2025, 15:18:00:901 CEST] 00000036 com.ibm.ws.session.WASSessionCore                            I SESN8501I: Menedżer sesji nie znalazł położenia trwałej pamięci masowej. Obiekty HttpSession będą zapisywane w pamięci lokalnego serwera aplikacji.
+[07.10.2025, 15:18:00:906 CEST] 00000036 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Ładowanie modułu WWW: simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:18:00:908 CEST] 00000036 com.ibm.ws.webcontainer                                      I SRVE0250I: Moduł WWW simple-rpg-1.0-SNAPSHOT został powiązany z hostem wirtualnym default_host.
+[07.10.2025, 15:18:00:908 CEST] 00000036 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Dostępna aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:18:00:919 CEST] 00000039 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Automatycznie wygenerowano plik konfiguracyjny wtyczki serwera WWW dla tego serwera w katalogu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/state/plugin-cfg.xml.
+[07.10.2025, 15:18:00:931 CEST] 00000038 com.ibm.ws.session.WASSessionCore                            I SESN0176I: W odniesieniu do klucza aplikacji default_host/simple-rpg zostanie utworzony nowy kontekst sesji.
+[07.10.2025, 15:18:00:934 CEST] 00000038 com.ibm.ws.util                                              I SESN0172I: Menedżer sesji korzysta przy generowaniu identyfikatora sesji z domyślnej implementacji klasy SecureRandom języka Java.
+[07.10.2025, 15:18:01:007 CEST] 00000038 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0001I: Aplikacja simple-rpg-1.0-SNAPSHOT została uruchomiona w ciągu 0,221 sek.
+[07.10.2025, 15:18:01:015 CEST] 00000030 com.ibm.ws.tcpchannel.internal.TCPPort                       I CWWKO0219I: Kanał TCP defaultHttpEndpoint został uruchomiony i obecnie nasłuchuje żądań na hoście localhost  (IPv4: 127.0.0.1) (port 9080).
+[07.10.2025, 15:18:01:018 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0012I: Serwer został zainstalowany z następującymi składnikami: [jsonb-3.0, jsonp-2.1, servlet-6.0].
+[07.10.2025, 15:18:01:018 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0008I: Aktualizacja składnika została zakończona po 0,371 sek.
+[07.10.2025, 15:18:01:018 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0011I: Serwer defaultServer jest gotowy do działania w trybie Mądrzejszy Świat. Serwer defaultServer został uruchomiony w ciągu 0,644 sekund.
+[07.10.2025, 15:18:03:773 CEST] 00000062 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0017I: Usunięta aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:18:03:780 CEST] 00000062 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0009I: Aplikacja simple-rpg-1.0-SNAPSHOT została zatrzymana pomyślnie.
+[07.10.2025, 15:18:03:782 CEST] 00000062 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Uruchamianie aplikacji simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:18:03:783 CEST] 00000062 bm.ws.app.manager.war.internal.WARDeployedAppInfoFactoryImpl I CWWKZ0134I: Aplikacja simple-rpg-1.0-SNAPSHOT używa luźnej definicji aplikacji w położeniu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/dropins/simple-rpg-1.0-SNAPSHOT.war.xml.
+[07.10.2025, 15:18:03:811 CEST] 00000062 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Ładowanie modułu WWW: simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:18:03:811 CEST] 00000062 com.ibm.ws.webcontainer                                      I SRVE0250I: Moduł WWW simple-rpg-1.0-SNAPSHOT został powiązany z hostem wirtualnym default_host.
+[07.10.2025, 15:18:03:811 CEST] 00000062 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Dostępna aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:18:03:815 CEST] 00000064 com.ibm.ws.session.WASSessionCore                            I SESN0176I: W odniesieniu do klucza aplikacji default_host/simple-rpg zostanie utworzony nowy kontekst sesji.
+[07.10.2025, 15:18:03:815 CEST] 00000064 com.ibm.ws.util                                              I SESN0172I: Menedżer sesji korzysta przy generowaniu identyfikatora sesji z domyślnej implementacji klasy SecureRandom języka Java.
+[07.10.2025, 15:18:03:836 CEST] 00000064 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0003I: Aplikacja simple-rpg-1.0-SNAPSHOT została zaktualizowana w ciągu 0,053 sek.
+[07.10.2025, 15:18:03:848 CEST] 00000063 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Automatycznie wygenerowano plik konfiguracyjny wtyczki serwera WWW dla tego serwera w katalogu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/state/plugin-cfg.xml.
+[07.10.2025, 15:18:03:863 CEST] 00000031 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Automatycznie wygenerowano plik konfiguracyjny wtyczki serwera WWW dla tego serwera w katalogu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/state/plugin-cfg.xml.
+[07.10.2025, 15:18:29:342 CEST] 0000001f com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0085I: Serwer defaultServer jest zatrzymywany, ponieważ kończone jest działanie maszyny JVM.
+[07.10.2025, 15:18:29:344 CEST] 00000066 com.ibm.ws.runtime.update.internal.RuntimeUpdateManagerImpl  A CWWKE1100I: Oczekiwanie przez maksymalnie 30 s na wyciszenie serwera.
+[07.10.2025, 15:18:29:347 CEST] 0000004e com.ibm.ws.tcpchannel.internal.TCPChannel                    I CWWKO0220I: Dla kanału TCP defaultHttpEndpoint zatrzymano nasłuchiwanie żądań na hoście localhost  (IPv4: 127.0.0.1) (port 9080).
+[07.10.2025, 15:18:29:347 CEST] 0000004e com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0017I: Usunięta aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:18:29:394 CEST] 00000020 com.ibm.ws.kernel.launch.internal.ServerCommandListener      A CWWKE0055I: Zażądano zamknięcia serwera w dniu wtorek, 7 października 2025 o godzinie 15:18. Serwer defaultServer jest wyłączany.
+[07.10.2025, 15:18:30:348 CEST] 00000066 com.ibm.ws.runtime.update.internal.RuntimeUpdateManagerImpl  I CWWKE1101I: Zakończono wyciszanie serwera.
+[07.10.2025, 15:18:30:367 CEST] 00000055 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0009I: Aplikacja simple-rpg-1.0-SNAPSHOT została zatrzymana pomyślnie.
+[07.10.2025, 15:18:30:453 CEST] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0036I: Serwer defaultServer został zatrzymany po 30,079 sek..

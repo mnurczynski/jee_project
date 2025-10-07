@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive>
+    <dir sourceOnDisk="/home/student/Dokumenty/193053/simple-rpg/simple-rpg/src/main/webapp" targetInArchive="/"/>
+    <dir sourceOnDisk="/home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/classes" targetInArchive="/WEB-INF/classes"/>
+    <file sourceOnDisk="/home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/tmp/META-INF/MANIFEST.MF" targetInArchive="/META-INF/MANIFEST.MF"/>
+</archive>

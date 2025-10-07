@@ -1,0 +1,134 @@
+********************************************************************************
+product = Open Liberty 25.0.0.10 (wlp-1.0.106.cl251020250923-1355)
+wlp.install.dir = /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/
+java.home = /usr/lib/jvm/java-17-openjdk-amd64
+java.version = 17.0.16
+java.runtime = OpenJDK Runtime Environment (17.0.16+8-Ubuntu-0ubuntu122.04.1)
+os = Linux (6.8.0-65-generic; amd64) (pl_PL)
+process = 25799@des06.kask.eti.pg.gda.pl
+Classpath = /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/bin/tools/ws-server.jar
+Java Library path = /usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+********************************************************************************
+[07.10.2025, 15:19:17:496 CEST] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0001I: Serwer defaultServer został uruchomiony.
+[07.10.2025, 15:19:17:686 CEST] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           I CWWKE0002I: Jądro zostało uruchomione po 0,272 sek. s
+[07.10.2025, 15:19:17:690 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0007I: Uruchomiono aktualizację składnika.
+[07.10.2025, 15:19:17:746 CEST] 00000025 com.ibm.ws.app.manager.internal.monitor.DropinMonitor        A CWWKZ0058I: Monitorowanie aplikacji w katalogu dropins.
+[07.10.2025, 15:19:17:825 CEST] 00000036 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Uruchamianie aplikacji simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:19:17:825 CEST] 00000036 bm.ws.app.manager.war.internal.WARDeployedAppInfoFactoryImpl I CWWKZ0134I: Aplikacja simple-rpg-1.0-SNAPSHOT używa luźnej definicji aplikacji w położeniu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/dropins/simple-rpg-1.0-SNAPSHOT.war.xml.
+[07.10.2025, 15:19:17:939 CEST] 00000036 com.ibm.ws.session.WASSessionCore                            I SESN8501I: Menedżer sesji nie znalazł położenia trwałej pamięci masowej. Obiekty HttpSession będą zapisywane w pamięci lokalnego serwera aplikacji.
+[07.10.2025, 15:19:17:945 CEST] 00000036 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Ładowanie modułu WWW: simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:19:17:946 CEST] 00000036 com.ibm.ws.webcontainer                                      I SRVE0250I: Moduł WWW simple-rpg-1.0-SNAPSHOT został powiązany z hostem wirtualnym default_host.
+[07.10.2025, 15:19:17:947 CEST] 00000036 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Dostępna aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:19:17:958 CEST] 00000039 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Automatycznie wygenerowano plik konfiguracyjny wtyczki serwera WWW dla tego serwera w katalogu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/state/plugin-cfg.xml.
+[07.10.2025, 15:19:17:973 CEST] 00000038 com.ibm.ws.session.WASSessionCore                            I SESN0176I: W odniesieniu do klucza aplikacji default_host/simple-rpg zostanie utworzony nowy kontekst sesji.
+[07.10.2025, 15:19:17:976 CEST] 00000038 com.ibm.ws.util                                              I SESN0172I: Menedżer sesji korzysta przy generowaniu identyfikatora sesji z domyślnej implementacji klasy SecureRandom języka Java.
+[07.10.2025, 15:19:18:046 CEST] 00000038 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0001I: Aplikacja simple-rpg-1.0-SNAPSHOT została uruchomiona w ciągu 0,220 sek.
+[07.10.2025, 15:19:18:053 CEST] 00000030 com.ibm.ws.tcpchannel.internal.TCPPort                       I CWWKO0219I: Kanał TCP defaultHttpEndpoint został uruchomiony i obecnie nasłuchuje żądań na hoście localhost  (IPv4: 127.0.0.1) (port 9080).
+[07.10.2025, 15:19:18:056 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0012I: Serwer został zainstalowany z następującymi składnikami: [jsonb-3.0, jsonp-2.1, servlet-6.0].
+[07.10.2025, 15:19:18:056 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0008I: Aktualizacja składnika została zakończona po 0,370 sek.
+[07.10.2025, 15:19:18:056 CEST] 00000030 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0011I: Serwer defaultServer jest gotowy do działania w trybie Mądrzejszy Świat. Serwer defaultServer został uruchomiony w ciągu 0,642 sekund.
+[07.10.2025, 15:19:20:807 CEST] 00000062 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0017I: Usunięta aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:19:20:813 CEST] 00000062 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0009I: Aplikacja simple-rpg-1.0-SNAPSHOT została zatrzymana pomyślnie.
+[07.10.2025, 15:19:20:816 CEST] 00000062 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Uruchamianie aplikacji simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:19:20:816 CEST] 00000062 bm.ws.app.manager.war.internal.WARDeployedAppInfoFactoryImpl I CWWKZ0134I: Aplikacja simple-rpg-1.0-SNAPSHOT używa luźnej definicji aplikacji w położeniu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/dropins/simple-rpg-1.0-SNAPSHOT.war.xml.
+[07.10.2025, 15:19:20:844 CEST] 00000062 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Ładowanie modułu WWW: simple-rpg-1.0-SNAPSHOT.
+[07.10.2025, 15:19:20:844 CEST] 00000062 com.ibm.ws.webcontainer                                      I SRVE0250I: Moduł WWW simple-rpg-1.0-SNAPSHOT został powiązany z hostem wirtualnym default_host.
+[07.10.2025, 15:19:20:844 CEST] 00000062 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Dostępna aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:19:20:847 CEST] 00000064 com.ibm.ws.session.WASSessionCore                            I SESN0176I: W odniesieniu do klucza aplikacji default_host/simple-rpg zostanie utworzony nowy kontekst sesji.
+[07.10.2025, 15:19:20:848 CEST] 00000064 com.ibm.ws.util                                              I SESN0172I: Menedżer sesji korzysta przy generowaniu identyfikatora sesji z domyślnej implementacji klasy SecureRandom języka Java.
+[07.10.2025, 15:19:20:874 CEST] 00000064 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0003I: Aplikacja simple-rpg-1.0-SNAPSHOT została zaktualizowana w ciągu 0,057 sek.
+[07.10.2025, 15:19:20:887 CEST] 00000063 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Automatycznie wygenerowano plik konfiguracyjny wtyczki serwera WWW dla tego serwera w katalogu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/state/plugin-cfg.xml.
+[07.10.2025, 15:19:20:900 CEST] 00000062 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Automatycznie wygenerowano plik konfiguracyjny wtyczki serwera WWW dla tego serwera w katalogu /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/state/plugin-cfg.xml.
+[07.10.2025, 15:20:08:508 CEST] 00000031 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [simple-rpg-1.0-SNAPSHOT] [/simple-rpg] [pl.edu.pg.eti.kask.rpg.controller.servlet.ApiServlet]: inicjowanie powiodło się.
+[07.10.2025, 15:20:45:402 CEST] 0000005c com.ibm.ws.webcontainer.util.ApplicationErrorUtils           E SRVE0777E: Wyjątek zgłoszony przez klasę aplikacji java.util.Optional.orElseThrow:403
+pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at pl.edu.pg.eti.kask.rpg.character.controller.simple.CharacterSimpleController.getCharacter(CharacterSimpleController.java:64)
+	at pl.edu.pg.eti.kask.rpg.controller.servlet.ApiServlet.doGet(ApiServlet.java:131)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:527)
+	at pl.edu.pg.eti.kask.rpg.controller.servlet.ApiServlet.service(ApiServlet.java:107)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:614)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.service(ServletWrapper.java:1266)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:754)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:451)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.invokeTarget(WebAppFilterChain.java:197)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:100)
+	at jakarta.servlet.http.HttpFilter.doFilter(HttpFilter.java:126)
+	at pl.edu.pg.eti.kask.rpg.controller.filter.ExceptionFilter.doFilter(ExceptionFilter.java:25)
+	at jakarta.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.ibm.ws.webcontainer.filter.FilterInstanceWrapper.doFilter(FilterInstanceWrapper.java:203)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:93)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.doFilter(WebAppFilterManager.java:1069)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters(WebAppFilterManager.java:1260)
+	at com.ibm.ws.webcontainer.webapp.WebApp.handleRequest(WebApp.java:5096)
+	at com.ibm.ws.webcontainer.osgi.DynamicVirtualHost$2.handleRequest(DynamicVirtualHost.java:328)
+	at com.ibm.ws.webcontainer.WebContainer.handleRequest(WebContainer.java:1047)
+	at com.ibm.ws.webcontainer.osgi.DynamicVirtualHost$2.run(DynamicVirtualHost.java:293)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink$TaskWrapper.run(HttpDispatcherLink.java:1563)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.wrapHandlerAndExecute(HttpDispatcherLink.java:761)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.ready(HttpDispatcherLink.java:721)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleDiscrimination(HttpInboundLink.java:569)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleNewRequest(HttpInboundLink.java:503)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.processRequest(HttpInboundLink.java:363)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.ready(HttpInboundLink.java:330)
+	at com.ibm.ws.tcpchannel.internal.NewConnectionInitialReadCallback.sendToDiscriminators(NewConnectionInitialReadCallback.java:169)
+	at com.ibm.ws.tcpchannel.internal.NewConnectionInitialReadCallback.complete(NewConnectionInitialReadCallback.java:77)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.requestComplete(WorkQueueManager.java:516)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.attemptIO(WorkQueueManager.java:586)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.workerRun(WorkQueueManager.java:970)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager$Worker.run(WorkQueueManager.java:1059)
+	at com.ibm.ws.threading.internal.ExecutorServiceImpl$RunnableWrapper.run(ExecutorServiceImpl.java:344)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[07.10.2025, 15:21:20:219 CEST] 00000063 com.ibm.ws.webcontainer.util.ApplicationErrorUtils           E SRVE0777E: Wyjątek zgłoszony przez klasę aplikacji java.util.Optional.orElseThrow:403
+pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at pl.edu.pg.eti.kask.rpg.character.controller.simple.CharacterSimpleController.getCharacterPortrait(CharacterSimpleController.java:100)
+	at pl.edu.pg.eti.kask.rpg.controller.servlet.ApiServlet.doGet(ApiServlet.java:150)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:527)
+	at pl.edu.pg.eti.kask.rpg.controller.servlet.ApiServlet.service(ApiServlet.java:107)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:614)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.service(ServletWrapper.java:1266)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:754)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:451)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.invokeTarget(WebAppFilterChain.java:197)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:100)
+	at jakarta.servlet.http.HttpFilter.doFilter(HttpFilter.java:126)
+	at pl.edu.pg.eti.kask.rpg.controller.filter.ExceptionFilter.doFilter(ExceptionFilter.java:25)
+	at jakarta.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.ibm.ws.webcontainer.filter.FilterInstanceWrapper.doFilter(FilterInstanceWrapper.java:203)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:93)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.doFilter(WebAppFilterManager.java:1069)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters(WebAppFilterManager.java:1260)
+	at com.ibm.ws.webcontainer.webapp.WebApp.handleRequest(WebApp.java:5096)
+	at com.ibm.ws.webcontainer.osgi.DynamicVirtualHost$2.handleRequest(DynamicVirtualHost.java:328)
+	at com.ibm.ws.webcontainer.WebContainer.handleRequest(WebContainer.java:1047)
+	at com.ibm.ws.webcontainer.osgi.DynamicVirtualHost$2.run(DynamicVirtualHost.java:293)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink$TaskWrapper.run(HttpDispatcherLink.java:1563)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.wrapHandlerAndExecute(HttpDispatcherLink.java:761)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.ready(HttpDispatcherLink.java:721)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleDiscrimination(HttpInboundLink.java:569)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleNewRequest(HttpInboundLink.java:503)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.processRequest(HttpInboundLink.java:363)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.ready(HttpInboundLink.java:330)
+	at com.ibm.ws.tcpchannel.internal.NewConnectionInitialReadCallback.sendToDiscriminators(NewConnectionInitialReadCallback.java:169)
+	at com.ibm.ws.tcpchannel.internal.NewConnectionInitialReadCallback.complete(NewConnectionInitialReadCallback.java:77)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.requestComplete(WorkQueueManager.java:516)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.attemptIO(WorkQueueManager.java:586)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.workerRun(WorkQueueManager.java:970)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager$Worker.run(WorkQueueManager.java:1059)
+	at com.ibm.ws.threading.internal.ExecutorServiceImpl$RunnableWrapper.run(ExecutorServiceImpl.java:344)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+[07.10.2025, 15:21:53:089 CEST] 0000001f com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0085I: Serwer defaultServer jest zatrzymywany, ponieważ kończone jest działanie maszyny JVM.
+[07.10.2025, 15:21:53:091 CEST] 00000067 com.ibm.ws.runtime.update.internal.RuntimeUpdateManagerImpl  A CWWKE1100I: Oczekiwanie przez maksymalnie 30 s na wyciszenie serwera.
+[07.10.2025, 15:21:53:095 CEST] 00000050 com.ibm.ws.tcpchannel.internal.TCPChannel                    I CWWKO0220I: Dla kanału TCP defaultHttpEndpoint zatrzymano nasłuchiwanie żądań na hoście localhost  (IPv4: 127.0.0.1) (port 9080).
+[07.10.2025, 15:21:53:095 CEST] 00000050 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0017I: Usunięta aplikacja WWW (default_host): http://localhost:9080/simple-rpg/
+[07.10.2025, 15:21:53:178 CEST] 00000020 com.ibm.ws.kernel.launch.internal.ServerCommandListener      A CWWKE0055I: Zażądano zamknięcia serwera w dniu wtorek, 7 października 2025 o godzinie 15:21. Serwer defaultServer jest wyłączany.
+[07.10.2025, 15:21:54:097 CEST] 00000067 com.ibm.ws.runtime.update.internal.RuntimeUpdateManagerImpl  I CWWKE1101I: Zakończono wyciszanie serwera.
+[07.10.2025, 15:21:54:112 CEST] 00000060 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0009I: Aplikacja simple-rpg-1.0-SNAPSHOT została zatrzymana pomyślnie.
+[07.10.2025, 15:21:54:195 CEST] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0036I: Serwer defaultServer został zatrzymany po 2 min., 36,781 sek..

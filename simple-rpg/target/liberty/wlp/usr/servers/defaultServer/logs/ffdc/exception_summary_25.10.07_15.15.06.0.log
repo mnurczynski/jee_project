@@ -1,0 +1,6 @@
+
+ Index  Count  Time of first Occurrence    Time of last Occurrence     Exception SourceId ProbeId
+------+------+---------------------------+---------------------------+---------------------------
+     0      1 7.10.2025, 15:15:06:051 CEST 7.10.2025, 15:15:06:051 CEST java.lang.ClassNotFoundException com.ibm.ws.webcontainer.osgi.DynamicVirtualHost startWebApp
+                                                                            - /home/student/Dokumenty/193053/simple-rpg/simple-rpg/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.10.07_15.15.06.0.log
+------+------+---------------------------+---------------------------+---------------------------
