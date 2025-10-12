@@ -1,4 +1,4 @@
-package pl.edu.pg.eti.kask.rpg.user;
+package pl.edu.pg.eti.kask.rpg.user.entity;
 
 public enum Type {
     MANAGER,

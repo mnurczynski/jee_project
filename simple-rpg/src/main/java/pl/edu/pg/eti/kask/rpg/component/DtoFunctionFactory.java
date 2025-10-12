@@ -1,18 +1,18 @@
 package pl.edu.pg.eti.kask.rpg.component;
 
-import pl.edu.pg.eti.kask.rpg.character.dto.GetCharacterResponse;
-import pl.edu.pg.eti.kask.rpg.character.dto.GetCharactersResponse;
-import pl.edu.pg.eti.kask.rpg.character.dto.GetProfessionResponse;
-import pl.edu.pg.eti.kask.rpg.character.dto.GetProfessionsResponse;
-import pl.edu.pg.eti.kask.rpg.character.dto.PutCharacterRequest;
-import pl.edu.pg.eti.kask.rpg.character.dto.function.CharacterToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.character.dto.function.CharactersToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.character.dto.function.ProfessionToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.character.dto.function.ProfessionsToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.character.dto.function.RequestToCharacterFunction;
-import pl.edu.pg.eti.kask.rpg.character.dto.function.UpdateCharacterWithRequestFunction;
-import pl.edu.pg.eti.kask.rpg.character.entity.Character;
-import pl.edu.pg.eti.kask.rpg.character.entity.Profession;
+import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingResponse;
+import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingsResponse;
+import pl.edu.pg.eti.kask.rpg.building.dto.GetOrganizationalUnitResponse;
+import pl.edu.pg.eti.kask.rpg.building.dto.GetOrganizationalUnitsResponse;
+import pl.edu.pg.eti.kask.rpg.building.dto.PutBuildingRequest;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.BuildingToResponseFunction;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.BuildingsToResponseFunction;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.OrganizationalUnitToResponseFunction;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.OrganizationalUnitsToResponseFunction;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.RequestToBuildingFunction;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.UpdateBuildingWithRequestFunction;
+import pl.edu.pg.eti.kask.rpg.building.entity.Building;
+import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUserResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUsersResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.PutUserRequest;
@@ -32,57 +32,57 @@ import java.util.function.Function;
 public class DtoFunctionFactory {
 
     /**
-     * Returns a function to convert a single {@link Character} to {@link GetCharacterResponse}.
+     * Returns a function to convert a single {@link Building} to {@link GetBuildingResponse}.
      *
-     * @return CharacterToResponseFunction instance
+     * @return BuildingToResponseFunction instance
      */
-    public CharacterToResponseFunction characterToResponse() {
-        return new CharacterToResponseFunction();
+    public BuildingToResponseFunction buildingToResponse() {
+        return new BuildingToResponseFunction();
     }
 
     /**
-     * Returns a function to convert a list of {@link Character} to {@link GetCharactersResponse}.
+     * Returns a function to convert a list of {@link Building} to {@link GetBuildingsResponse}.
      *
-     * @return CharactersToResponseFunction instance
+     * @return BuildingsToResponseFunction instance
      */
-    public CharactersToResponseFunction charactersToResponse() {
-        return new CharactersToResponseFunction();
+    public BuildingsToResponseFunction buildingsToResponse() {
+        return new BuildingsToResponseFunction();
     }
 
     /**
-     * Returns a function to convert a single {@link Profession} to {@link GetProfessionResponse}.
+     * Returns a function to convert a single {@link OrganizationalUnit} to {@link GetOrganizationalUnitResponse}.
      *
-     * @return ProfessionToResponseFunction instance
+     * @return OrganizationalUnitToResponseFunction instance
      */
-    public ProfessionToResponseFunction professionToResponse() {
-        return new ProfessionToResponseFunction();
+    public OrganizationalUnitToResponseFunction organizationalUnitToResponse() {
+        return new OrganizationalUnitToResponseFunction();
     }
 
     /**
-     * Returns a function to convert a list of {@link Profession} to {@link GetProfessionsResponse}.
+     * Returns a function to convert a list of {@link OrganizationalUnit} to {@link GetOrganizationalUnitsResponse}.
      *
-     * @return ProfessionsToResponseFunction instance
+     * @return OrganizationalUnitsToResponseFunction instance
      */
-    public ProfessionsToResponseFunction professionsToResponse() {
-        return new ProfessionsToResponseFunction();
+    public OrganizationalUnitsToResponseFunction organizationalUnitsToResponse() {
+        return new OrganizationalUnitsToResponseFunction();
     }
 
     /**
-     * Returns a function to convert a {@link PutCharacterRequest} to a {@link Character}.
+     * Returns a function to convert a {@link PutBuildingRequest} to a {@link Building}.
      *
-     * @return RequestToCharacterFunction instance
+     * @return RequestToBuildingFunction instance
      */
-    public RequestToCharacterFunction requestToCharacter() {
-        return new RequestToCharacterFunction();
+    public RequestToBuildingFunction requestToBuilding() {
+        return new RequestToBuildingFunction();
     }
 
     /**
-     * Returns a function to update a {@link Character}.
+     * Returns a function to update a {@link Building}.
      *
-     * @return UpdateCharacterFunction instance
+     * @return UpdateBuildingFunction instance
      */
-    public UpdateCharacterWithRequestFunction updateCharacter() {
-        return new UpdateCharacterWithRequestFunction();
+    public UpdateBuildingWithRequestFunction updateBuilding() {
+        return new UpdateBuildingWithRequestFunction();
     }
 
     /**

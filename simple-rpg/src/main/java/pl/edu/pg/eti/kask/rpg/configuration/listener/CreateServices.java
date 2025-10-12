@@ -3,12 +3,12 @@ package pl.edu.pg.eti.kask.rpg.configuration.listener;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
-import pl.edu.pg.eti.kask.rpg.character.repository.api.CharacterRepository;
-import pl.edu.pg.eti.kask.rpg.character.repository.api.ProfessionRepository;
-import pl.edu.pg.eti.kask.rpg.character.repository.memory.CharacterInMemoryRepository;
-import pl.edu.pg.eti.kask.rpg.character.repository.memory.ProfessionInMemoryRepository;
-import pl.edu.pg.eti.kask.rpg.character.service.CharacterService;
-import pl.edu.pg.eti.kask.rpg.character.service.ProfessionService;
+import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
+import pl.edu.pg.eti.kask.rpg.building.repository.api.OrganizationalUnitRepository;
+import pl.edu.pg.eti.kask.rpg.building.repository.memory.BuildingInMemoryRepository;
+import pl.edu.pg.eti.kask.rpg.building.repository.memory.OrganizationalUnitInMemoryRepository;
+import pl.edu.pg.eti.kask.rpg.building.service.BuildingService;
+import pl.edu.pg.eti.kask.rpg.building.service.OrganizationalUnitService;
 import pl.edu.pg.eti.kask.rpg.crypto.component.Pbkdf2PasswordHash;
 import pl.edu.pg.eti.kask.rpg.datastore.component.DataStore;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
@@ -27,12 +27,12 @@ public class CreateServices implements ServletContextListener {
         DataStore dataSource = (DataStore) event.getServletContext().getAttribute("datasource");
 
         UserRepository userRepository = new UserInMemoryRepository(dataSource);
-        ProfessionRepository professionRepository = new ProfessionInMemoryRepository(dataSource);
-        CharacterRepository characterRepository = new CharacterInMemoryRepository(dataSource);
+        OrganizationalUnitRepository organizationalUnitRepository = new OrganizationalUnitInMemoryRepository(dataSource);
+        BuildingRepository buildingRepository = new BuildingInMemoryRepository(dataSource);
 
         event.getServletContext().setAttribute("userService", new UserService(userRepository, new Pbkdf2PasswordHash()));
-        event.getServletContext().setAttribute("characterService", new CharacterService(characterRepository, professionRepository, userRepository));
-        event.getServletContext().setAttribute("professionService", new ProfessionService(professionRepository));
+        event.getServletContext().setAttribute("buildingService", new BuildingService(userRepository, buildingRepository, organizationalUnitRepository));
+        event.getServletContext().setAttribute("organizationalUnitService", new OrganizationalUnitService(userRepository, buildingRepository, organizationalUnitRepository));
     }
 
 }
