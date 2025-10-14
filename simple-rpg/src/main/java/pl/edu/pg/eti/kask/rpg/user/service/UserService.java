@@ -4,6 +4,7 @@ import pl.edu.pg.eti.kask.rpg.crypto.component.Pbkdf2PasswordHash;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,6 +25,22 @@ public class UserService {
         this.passwordHash = passwordHash;
     }
 
+
+
+    public void saveUserAvatar(UUID id, byte [] avatar)
+    {
+        repository.saveAvatar(id, avatar);
+    }
+
+    public Optional<byte []> getUserAvatar(UUID id)
+    {
+        return repository.findAvatar(id);
+    }
+
+    public void deleteUserAvatar(UUID id)
+    {
+        repository.deleteAvatar(id);
+    }
     /**
      * @param id user's id
      * @return container (can be empty) with user
@@ -41,6 +58,8 @@ public class UserService {
     public Optional<User> find(String login) {
         return repository.findByLogin(login);
     }
+
+    public Optional<List<User>> findAll() {return Optional.of(repository.findAll());}
 
     /**
      * Saves new user. Password is hashed using configured hash algorithm.

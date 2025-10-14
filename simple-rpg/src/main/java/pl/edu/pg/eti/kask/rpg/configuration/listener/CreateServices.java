@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.kask.rpg.configuration.listener;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -22,11 +23,17 @@ import pl.edu.pg.eti.kask.rpg.user.service.UserService;
 @WebListener//using annotation does not allow configuring order
 public class CreateServices implements ServletContextListener {
 
+
+    @Resource(name = "USER_AVATAR_PATH")
+    private String USER_AVATAR_PATH;
+
     @Override
     public void contextInitialized(ServletContextEvent event) {
         DataStore dataSource = (DataStore) event.getServletContext().getAttribute("datasource");
 
-        UserRepository userRepository = new UserInMemoryRepository(dataSource);
+
+
+        UserRepository userRepository = new UserInMemoryRepository(dataSource, USER_AVATAR_PATH);
         OrganizationalUnitRepository organizationalUnitRepository = new OrganizationalUnitInMemoryRepository(dataSource);
         BuildingRepository buildingRepository = new BuildingInMemoryRepository(dataSource);
 

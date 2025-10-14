@@ -3,6 +3,7 @@ package pl.edu.pg.eti.kask.rpg.building.service;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.OrganizationalUnitRepository;
+import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
 
@@ -37,10 +38,20 @@ public class BuildingService {
     }
 
     public Optional<List<Building>> findAllByUser(UUID id) {
-        return buildingRepository.findAllByUser(userRepository.find(id).get());
+        var user = userRepository.find(id);
+        if (user.isPresent()) {
+            return buildingRepository.findAllByUser(user.get());
+        }
+        throw new NotFoundException("User not found");
     }
 
-    public Optional<List<Building>> findAllByOrganizationalUnit(UUID id) { return buildingRepository.findAllByOrganizationalUnit(organizationalUnitRepository.find(id).get());}
+    public Optional<List<Building>> findAllByOrganizationalUnit(UUID id) {
+        var unit = organizationalUnitRepository.find(id);
+        if(unit.isPresent()) {
+            return buildingRepository.findAllByOrganizationalUnit(unit.get());
+        }
+        throw new NotFoundException("Organizational unit not found");
+    }
 
     public void create(Building building)
     {

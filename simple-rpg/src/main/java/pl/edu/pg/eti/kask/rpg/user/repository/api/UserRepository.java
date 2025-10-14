@@ -16,5 +16,12 @@ public interface UserRepository extends Repository<User, UUID> {
      */
     Optional<User> findByLogin(String login);
 
+
+    Optional<byte[]> findAvatar(UUID id);
+
+
+    void saveAvatar(UUID id, byte[] avatar);
+
+    void deleteAvatar(UUID id);
 }
 

@@ -1,67 +1,41 @@
 # Get all characters.
 
-GET http://localhost:9080/simple-rpg/api/characters
+GET http://localhost:9080/simple-rpg/api/buildings
 
 ###
 
 # Get single character.
 
-GET http://localhost:9080/simple-rpg/api/characters/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+GET http://localhost:9080/simple-rpg/api/buildings/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 
 ###
 
 # Get single character. Not existing, created later.
 
-GET http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
-
-###
-
-# Get single character portrait.
-
-GET http://localhost:9080/simple-rpg/api/characters/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0/portrait
-
-###
-
-# Get single character portrait. Not existing, created later.
-
-GET http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87/portrait
+GET http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 
 ###
 
 # Create new character.
 
-PUT http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 Content-Type: application/json
 
 {
-  "name": "Sigrid",
-  "background": "No one special.",
-  "age": 18,
-  "strength": 12,
-  "constitution": 12,
-  "charisma": 12,
-  "health": 24,
-  "profession": "f5875513-bf7b-4ae1-b8a5-5b70a1b90e76"
+  "name": "Nano B",
+  "area": 2320,
+  "number": 18,
+  "maximumOccupancy": 300,
+  "buildingAdministrator": "81e1c2a9-7f57-439b-b53d-6db88b071e4e",
+  "occupant": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4"
 }
 
 ###
 
-# Create character portrait.
-
-PUT http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87/portrait
-Content-Type: multipart/form-data; boundary=boundary
-
---boundary
-Content-Disposition: form-data; name="portrait"; filename="sigrid.png'
-
-< simple-rpg/src/main/resources/pl/edu/pg/eti/kask/rpg/configuration/avatar/sigrid.png
---boundary--
-
-###
 
 # Create new character. Not existing profession.
 
-PUT http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 Content-Type: application/json
 
 {
@@ -78,7 +52,7 @@ Content-Type: application/json
 
 # Update character.
 
-PATCH http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+PATCH http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 Content-Type: application/json
 
 {
@@ -91,40 +65,75 @@ Content-Type: application/json
 
 # Delete character.
 
-DELETE http://localhost:9080/simple-rpg/api/characters/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+DELETE http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 
 ###
 
 # Get all professions.
 
-GET http://localhost:9080/simple-rpg/api/professions
+GET http://localhost:9080/simple-rpg/api/organizational_units
 
 ###
 
 # Get all profession characters.
 
-GET http://localhost:9080/simple-rpg/api/professions/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/characters
+GET http://localhost:9080/simple-rpg/api/organizational_units/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/buildings
 
 ###
 
 # Get all profession characters. Not existing.
 
-GET http://localhost:9080/simple-rpg/api/professions/d8b50a43-ed45-4441-9bcb-5db7782b47f6/characters
+GET http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6/buildings
 
 ###
 
 # Get all user characters.
 
-GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/characters
+GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/buildings
 
 ###
 
 # Get all user characters. Empty.
 
-GET http://localhost:9080/simple-rpg/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/characters
+GET http://localhost:9080/simple-rpg/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4197/buildings
 
 ###
 
+GET http://localhost:9080/simple-rpg/api/users/
+
+###
+
+# Get user
+
+GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e
+
+
+###
+
+# Get user not existing
+
+GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4f
+
 # Get all user characters. Not existing.
 
-GET http://localhost:9080/simple-rpg/api/users/c07cab55-a56f-4d67-b351-175bb7a94b7a/characters
+###
+GET http://localhost:9080/simple-rpg/api/users/c07cab55-a56f-4d67-b351-175bb7a94b7a/buildings
+
+
+# Create character portrait.
+
+###
+PUT http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/avatar
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="portrait"; filename="sigrid.png'
+
+< simple-rpg/src/main/resources/pl/edu/pg/eti/kask/rpg/configuration/avatar/sigrid.png
+--boundary--
+
+###
+GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/avatar
+
+###
+DELETE http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/avatar

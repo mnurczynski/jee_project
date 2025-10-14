@@ -20,7 +20,7 @@ public class BuildingInMemoryRepository implements BuildingRepository {
 
     @Override
     public Optional<Building> find(UUID id) {
-        return Optional.of((Building) store.findAllBuildings().stream().filter(building -> building.getId().equals(id)).toList().get(0));
+        return  store.findAllBuildings().stream().filter(building -> building.getId().equals(id)).findFirst();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class BuildingInMemoryRepository implements BuildingRepository {
 
     @Override
     public Optional<Building> findByIdAndUser(UUID id, User user) {
-        return Optional.of((Building) store.findAllBuildings().stream().filter(building -> building.getId().equals(id)).filter(building -> building.getBuildingAdministrator().equals(user)).toList().get(0));
+        return store.findAllBuildings().stream().filter(building -> building.getId().equals(id)).filter(building -> building.getBuildingAdministrator().equals(user)).findFirst();
     }
 
     @Override

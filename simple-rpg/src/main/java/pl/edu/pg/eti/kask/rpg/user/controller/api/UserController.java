@@ -11,6 +11,8 @@ public interface UserController {
 
     public void putUserAvatar(UUID id, byte[] byteStream);
 
+    public void deleteUserAvatar(UUID id);
+
     public GetUserResponse getUser(UUID id);
 
     public GetUsersResponse getUsers();

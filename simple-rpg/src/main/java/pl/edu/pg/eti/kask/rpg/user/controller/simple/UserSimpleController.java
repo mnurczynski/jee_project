@@ -1,6 +1,7 @@
 package pl.edu.pg.eti.kask.rpg.user.controller.simple;
 
 import pl.edu.pg.eti.kask.rpg.component.DtoFunctionFactory;
+import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.user.controller.api.UserController;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUserResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUsersResponse;
@@ -21,21 +22,31 @@ public class UserSimpleController implements UserController {
 
     @Override
     public byte[] getUserAvatar(UUID id) {
-        return new byte[0];
+        var avatar = userService.getUserAvatar(id);
+        if(avatar.isPresent())
+        {
+            return avatar.get();
+        }
+        throw new NotFoundException();
     }
 
     @Override
     public void putUserAvatar(UUID id, byte[] byteStream) {
+        userService.saveUserAvatar(id, byteStream);
+    }
 
+    @Override
+    public void deleteUserAvatar(UUID id) {
+        userService.deleteUserAvatar(id);
     }
 
     @Override
     public GetUserResponse getUser(UUID id) {
-        return null;
+        return userService.find(id).map(factory.userToResponse()).orElseThrow(NotFoundException::new);
     }
 
     @Override
     public GetUsersResponse getUsers() {
-        return null;
+        return userService.findAll().map(factory.usersToResponse()).orElseThrow(NotFoundException::new);
     }
 }

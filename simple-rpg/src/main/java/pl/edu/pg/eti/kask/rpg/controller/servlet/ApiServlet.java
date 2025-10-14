@@ -88,9 +88,9 @@ public class ApiServlet extends HttpServlet {
          */
         public static final Pattern USER_BUILDINGS = Pattern.compile("/users/(%s)/buildings/?".formatted(UUID.pattern()));
 
-        public static final Pattern USER_AVATAR = Pattern.compile("/users/(%s)/avatar/".formatted(UUID.pattern()));
+        public static final Pattern USER_AVATAR = Pattern.compile("/users/(%s)/avatar/?".formatted(UUID.pattern()));
 
-        public static final Pattern USERS = Pattern.compile("/users/");
+        public static final Pattern USERS = Pattern.compile("/users/?");
         public static final Pattern USER = Pattern.compile("/users/(%s)".formatted(UUID.pattern()));
 
     }
@@ -165,7 +165,7 @@ public class ApiServlet extends HttpServlet {
             else if (path.matches(Patterns.USER.pattern()))
             {
                 response.setContentType("application/json");
-                UUID uuid = extractUuid(Patterns.BUILDING, path);
+                UUID uuid = extractUuid(Patterns.USER, path);
                 response.getWriter().write(jsonb.toJson(userController.getUser(uuid)));
                 return;
             }
@@ -181,7 +181,7 @@ public class ApiServlet extends HttpServlet {
             if (path.matches(Patterns.BUILDING.pattern())) {
                 UUID uuid = extractUuid(Patterns.BUILDING, path);
                 buildingController.putBuilding(uuid, jsonb.fromJson(request.getReader(), PutBuildingRequest.class));
-                response.addHeader("Location", createUrl(request, Paths.API, "characters", uuid.toString()));
+                response.addHeader("Location", createUrl(request, Paths.API, "buildings", uuid.toString()));
                 return;
             } else if (path.matches(Patterns.USER_AVATAR.pattern())) {
                 UUID uuid = extractUuid(Patterns.USER_AVATAR, path);
@@ -202,8 +202,13 @@ public class ApiServlet extends HttpServlet {
                 UUID uuid = extractUuid(Patterns.BUILDING, path);
                 buildingController.deleteBuilding(uuid);
                 return;
+            } else if(path.matches(Patterns.USER_AVATAR.pattern())){
+                UUID uuid = extractUuid(Patterns.USER_AVATAR, path);
+                userController.deleteUserAvatar(uuid);
+                return;
             }
         }
+
         response.sendError(HttpServletResponse.SC_BAD_REQUEST);
     }
 

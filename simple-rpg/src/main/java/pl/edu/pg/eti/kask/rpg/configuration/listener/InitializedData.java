@@ -78,9 +78,18 @@ public class InitializedData implements ServletContextListener {
                 .hashedPassword("some_api_key")
                 .build();
 
+        User api_user_2 = User.builder()
+                .id(UUID.fromString("ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4112"))
+                .login("CCTV monitoring service")
+                .hiringDate(LocalDate.of(1990, 10, 21))
+                .type(Type.READ_ONLY_USER)
+                .hashedPassword("some_other_api_key")
+                .build();
+
         userService.create(admin);
         userService.create(kevin);
         userService.create(api_user);
+        userService.create(api_user_2);
 
         OrganizationalUnit kwestura = OrganizationalUnit.builder()
                 .id(UUID.fromString("f5875513-bf7b-4ae1-b8a5-5b70a1b90e76"))
