@@ -22,12 +22,12 @@ PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed
 Content-Type: application/json
 
 {
-  "name": "Nano B",
+  "name": "Centrum Nanotechnologii B",
   "area": 2320,
   "number": 18,
   "maximumOccupancy": 300,
   "buildingAdministrator": "81e1c2a9-7f57-439b-b53d-6db88b071e4e",
-  "occupant": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4"
+  "organizationalUnit": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4"
 }
 
 ###
@@ -35,17 +35,16 @@ Content-Type: application/json
 
 # Create new character. Not existing profession.
 
-PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b6fefe
 Content-Type: application/json
 
 {
-  "name": "Sigrid",
-  "background": "No one special.",
-  "age": 18,
-  "strength": 12,
-  "constitution": 12,
-  "charisma": 12,
-  "profession": "3bb5b0d5-7e22-466f-8c3f-be4baa3d3b8c"
+  "name": "Nowe ETI",
+  "area": 4320,
+  "number": 42,
+  "maximumOccupancy": 2000,
+  "buildingAdministrator": "81e1c2a9-7f57-439b-b53d-6db88b071e4e",
+  "organizationalUnit": "5d1da2ae-6a14-4b6d-8b4f-d117867ffff4"
 }
 
 ###
@@ -56,9 +55,8 @@ PATCH http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7f
 Content-Type: application/json
 
 {
-  "name": "Sir Sigrid",
-  "background": "Someone well known.",
-  "age": 30
+  "maximumOccupancy": 320,
+  "number": 41
 }
 
 ###
@@ -77,7 +75,7 @@ GET http://localhost:9080/simple-rpg/api/organizational_units
 
 # Get all profession characters.
 
-GET http://localhost:9080/simple-rpg/api/organizational_units/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/buildings
+GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings
 
 ###
 

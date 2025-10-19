@@ -58,6 +58,7 @@ public class BuildingSimpleController implements BuildingController {
 
     public void putBuilding(UUID id, PutBuildingRequest request)
     {
+        deleteBuilding(id); // Deleting building if already exists
         service.create(factory.requestToBuilding().apply(id, request));
     }
 

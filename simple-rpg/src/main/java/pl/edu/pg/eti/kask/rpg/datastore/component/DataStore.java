@@ -3,6 +3,8 @@ package pl.edu.pg.eti.kask.rpg.datastore.component;
 import lombok.extern.java.Log;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
+import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.BadRequestException;
+import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.serialization.component.CloningUtility;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 
@@ -49,7 +51,7 @@ public class DataStore {
 
     public synchronized void createOrganizationalUnit(OrganizationalUnit value) throws IllegalArgumentException {
         if (organizationalUnits.stream().anyMatch(organizationalUnit -> organizationalUnit.getId().equals(value.getId()))) {
-            throw new IllegalArgumentException("The profession id \"%s\" is not unique".formatted(value.getId()));
+            throw new BadRequestException("The organizational unit id \"%s\" is not unique".formatted(value.getId()));
         }
         organizationalUnits.add(cloningUtility.clone(value));
     }
@@ -64,7 +66,7 @@ public class DataStore {
 
     public synchronized void createBuildings(Building value) throws IllegalArgumentException {
         if (buildings.stream().anyMatch(building -> building.getId().equals(value.getId()))) {
-            throw new IllegalArgumentException("The character id \"%s\" is not unique".formatted(value.getId()));
+            throw new BadRequestException("The building id \"%s\" is not unique".formatted(value.getId()));
         }
         Building entity = cloneWithRelationships(value);
         buildings.add(entity);
@@ -76,7 +78,7 @@ public class DataStore {
         if (buildings.removeIf(building -> building.getId().equals(value.getId()))) {
             buildings.add(entity);
         } else {
-            throw new IllegalArgumentException("The character with id \"%s\" does not exist".formatted(value.getId()));
+            throw new NotFoundException("The building with id \"%s\" does not exist".formatted(value.getId()));
         }
     }
 
@@ -88,7 +90,7 @@ public class DataStore {
      */
     public synchronized void deleteBuilding(UUID id) throws IllegalArgumentException {
         if (!buildings.removeIf(building -> building.getId().equals(id))) {
-            throw new IllegalArgumentException("The character with id \"%s\" does not exist".formatted(id));
+            throw new NotFoundException("The building with id \"%s\" does not exist".formatted(id));
         }
     }
 
@@ -111,7 +113,7 @@ public class DataStore {
      */
     public synchronized void createUser(User value) throws IllegalArgumentException {
         if (users.stream().anyMatch(character -> character.getId().equals(value.getId()))) {
-            throw new IllegalArgumentException("The user id \"%s\" is not unique".formatted(value.getId()));
+            throw new BadRequestException("The user id \"%s\" is not unique".formatted(value.getId()));
         }
         users.add(cloningUtility.clone(value));
     }
@@ -126,7 +128,7 @@ public class DataStore {
         if (users.removeIf(character -> character.getId().equals(value.getId()))) {
             users.add(cloningUtility.clone(value));
         } else {
-            throw new IllegalArgumentException("The user with id \"%s\" does not exist".formatted(value.getId()));
+            throw new NotFoundException("The user with id \"%s\" does not exist".formatted(value.getId()));
         }
     }
 
@@ -138,14 +140,14 @@ public class DataStore {
             entity.setBuildingAdministrator(users.stream()
                     .filter(user -> user.getId().equals(value.getBuildingAdministrator().getId()))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("No user with id \"%s\".".formatted(value.getBuildingAdministrator().getId()))));
+                    .orElseThrow(() -> new NotFoundException("No user with id \"%s\".".formatted(value.getBuildingAdministrator().getId()))));
         }
 
         if (entity.getOccupant() != null) {
             entity.setOccupant(organizationalUnits.stream()
                     .filter(organizationalUnit -> organizationalUnit.getId().equals(value.getOccupant().getId()))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("No profession with id \"%s\".".formatted(value.getOccupant().getId()))));
+                    .orElseThrow(() -> new NotFoundException("No unit with id \"%s\".".formatted(value.getOccupant().getId()))));
         }
 
         return entity;
