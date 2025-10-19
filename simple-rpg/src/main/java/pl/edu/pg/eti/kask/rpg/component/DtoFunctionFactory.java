@@ -1,26 +1,14 @@
 package pl.edu.pg.eti.kask.rpg.component;
 
-import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingResponse;
-import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingsResponse;
-import pl.edu.pg.eti.kask.rpg.building.dto.GetOrganizationalUnitResponse;
-import pl.edu.pg.eti.kask.rpg.building.dto.GetOrganizationalUnitsResponse;
-import pl.edu.pg.eti.kask.rpg.building.dto.PutBuildingRequest;
-import pl.edu.pg.eti.kask.rpg.building.dto.function.BuildingToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.building.dto.function.BuildingsToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.building.dto.function.OrganizationalUnitToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.building.dto.function.OrganizationalUnitsToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.building.dto.function.RequestToBuildingFunction;
-import pl.edu.pg.eti.kask.rpg.building.dto.function.UpdateBuildingWithRequestFunction;
+import jakarta.enterprise.context.ApplicationScoped;
+import pl.edu.pg.eti.kask.rpg.building.dto.*;
+import pl.edu.pg.eti.kask.rpg.building.dto.function.*;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUserResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUsersResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.PutUserRequest;
-import pl.edu.pg.eti.kask.rpg.user.dto.function.RequestToUserFunction;
-import pl.edu.pg.eti.kask.rpg.user.dto.function.UpdateUserPasswordWithRequestFunction;
-import pl.edu.pg.eti.kask.rpg.user.dto.function.UpdateUserWithRequestFunction;
-import pl.edu.pg.eti.kask.rpg.user.dto.function.UserToResponseFunction;
-import pl.edu.pg.eti.kask.rpg.user.dto.function.UsersToResponseFunction;
+import pl.edu.pg.eti.kask.rpg.user.dto.function.*;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 
 import java.util.function.Function;
@@ -29,6 +17,7 @@ import java.util.function.Function;
  * Factor for creating {@link Function} implementation for converting between various objects used in different layers.
  * Instead of injecting multiple function objects single factory is injected.
  */
+@ApplicationScoped
 public class DtoFunctionFactory {
 
     /**
@@ -129,5 +118,6 @@ public class DtoFunctionFactory {
     public UserToResponseFunction userToResponse() {
         return new UserToResponseFunction();
     }
+
 
 }

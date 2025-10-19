@@ -1,5 +1,7 @@
 package pl.edu.pg.eti.kask.rpg.building.repository.memory;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
@@ -10,10 +12,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@RequestScoped
 public class BuildingInMemoryRepository implements BuildingRepository {
 
     private final DataStore store;
 
+    @Inject
     public BuildingInMemoryRepository(DataStore store) {
         this.store = store;
     }

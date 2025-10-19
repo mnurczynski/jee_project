@@ -1,5 +1,8 @@
 package pl.edu.pg.eti.kask.rpg.user.service;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.crypto.component.Pbkdf2PasswordHash;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
@@ -8,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@ApplicationScoped
+@NoArgsConstructor(force = true)
 public class UserService {
     private final UserRepository repository;
 
@@ -20,6 +25,7 @@ public class UserService {
      * @param repository   repository for character entity
      * @param passwordHash hash mechanism used for storing users' passwords
      */
+    @Inject
     public UserService(UserRepository repository, Pbkdf2PasswordHash passwordHash) {
         this.repository = repository;
         this.passwordHash = passwordHash;

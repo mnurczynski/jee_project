@@ -1,5 +1,8 @@
 package pl.edu.pg.eti.kask.rpg.datastore.component;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
@@ -22,6 +25,8 @@ import java.util.stream.Collectors;
  * usage.
  */
 @Log
+@ApplicationScoped
+@NoArgsConstructor(force = true)
 public class DataStore {
 
 
@@ -36,7 +41,7 @@ public class DataStore {
 
     private final CloningUtility cloningUtility;
 
-
+    @Inject
     public DataStore(CloningUtility cloningUtility) {
         this.cloningUtility = cloningUtility;
     }

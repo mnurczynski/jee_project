@@ -1,5 +1,8 @@
 package pl.edu.pg.eti.kask.rpg.user.repository.memory;
 
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.InternalServerException;
 import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.datastore.component.DataStore;
@@ -7,29 +10,32 @@ import pl.edu.pg.eti.kask.rpg.user.entity.User;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.nio.file.*;
 
+@RequestScoped
 public class UserInMemoryRepository implements UserRepository {
     /**
      * Underlying data store. In future should be replaced with database connection.
      */
     private final DataStore store;
 
-    private final String userAvatarPath;
+    @Resource(name = "USER_AVATAR_PATH")
+    private String userAvatarPath;
 
 
     /**
      * @param store data store
      */
-    public UserInMemoryRepository(DataStore store, String userAvatarPath) {
+    @Inject
+    public UserInMemoryRepository(DataStore store) {
         this.store = store;
-        this.userAvatarPath = userAvatarPath;
     }
 
     @Override

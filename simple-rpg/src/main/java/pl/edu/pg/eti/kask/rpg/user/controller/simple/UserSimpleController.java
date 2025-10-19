@@ -1,5 +1,7 @@
 package pl.edu.pg.eti.kask.rpg.user.controller.simple;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import pl.edu.pg.eti.kask.rpg.component.DtoFunctionFactory;
 import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.user.controller.api.UserController;
@@ -9,12 +11,14 @@ import pl.edu.pg.eti.kask.rpg.user.service.UserService;
 
 import java.util.UUID;
 
+@RequestScoped
 public class UserSimpleController implements UserController {
 
     private final UserService userService;
 
     private final DtoFunctionFactory factory;
 
+    @Inject
     public UserSimpleController(UserService userService, DtoFunctionFactory factory) {
         this.userService = userService;
         this.factory = factory;

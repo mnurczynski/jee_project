@@ -5,18 +5,6 @@
          version="6.0"
          metadata-complete="false">
 
-    <listener>
-        <listener-class>pl.edu.pg.eti.kask.rpg.configuration.listener.CreateDataSource</listener-class>
-    </listener>
-
-    <listener>
-        <listener-class>pl.edu.pg.eti.kask.rpg.configuration.listener.CreateServices</listener-class>
-    </listener>
-
-    <listener>
-        <listener-class>pl.edu.pg.eti.kask.rpg.configuration.listener.CreateControllers</listener-class>
-    </listener>
-
     <env-entry>
         <env-entry-name>USER_AVATAR_PATH</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>

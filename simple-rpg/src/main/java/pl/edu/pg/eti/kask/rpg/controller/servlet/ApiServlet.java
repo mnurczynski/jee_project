@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.kask.rpg.controller.servlet;
 
+import jakarta.inject.Inject;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.servlet.ServletException;
@@ -8,8 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import pl.edu.pg.eti.kask.rpg.building.controller.simple.BuildingSimpleController;
-import pl.edu.pg.eti.kask.rpg.building.controller.simple.OrganizationalUnitSimpleController;
+import pl.edu.pg.eti.kask.rpg.building.controller.api.BuildingController;
+import pl.edu.pg.eti.kask.rpg.building.controller.api.OrganizationalUnitController;
 import pl.edu.pg.eti.kask.rpg.building.dto.PatchBuildingRequest;
 import pl.edu.pg.eti.kask.rpg.building.dto.PutBuildingRequest;
 import pl.edu.pg.eti.kask.rpg.user.controller.api.UserController;
@@ -30,16 +31,24 @@ import java.util.regex.Pattern;
 public class ApiServlet extends HttpServlet {
 
     /**
-     * Controller for managing collections characters' representations.
+     * Controller for managing collections characters' repre
+     * sentations.
      */
-    private BuildingSimpleController buildingController;
+    private final BuildingController buildingController;
 
     /**
      * Controller for managing collections professions' representations.
      */
-    private OrganizationalUnitSimpleController organizationalUnitController;
+    private final OrganizationalUnitController organizationalUnitController;
 
-    private UserController userController;
+    @Inject
+    public ApiServlet(BuildingController buildingController, OrganizationalUnitController organizationalUnitController, UserController userController) {
+        this.buildingController = buildingController;
+        this.organizationalUnitController = organizationalUnitController;
+        this.userController = userController;
+    }
+
+    private final UserController userController;
 
     /**
      * Definition of paths supported by this servlet. Separate inner class provides composition for static fields.
@@ -111,13 +120,7 @@ public class ApiServlet extends HttpServlet {
         }
     }
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        buildingController = (BuildingSimpleController) getServletContext().getAttribute("buildingController");
-        organizationalUnitController = (OrganizationalUnitSimpleController) getServletContext().getAttribute("organizationalUnitController");
-        userController = (UserController) getServletContext().getAttribute("userController");
-    }
+
 
     @SuppressWarnings("RedundantThrows")
     @Override

@@ -1,5 +1,8 @@
 package pl.edu.pg.eti.kask.rpg.building.controller.simple;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.building.controller.api.BuildingController;
 import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingResponse;
 import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingsResponse;
@@ -13,6 +16,8 @@ import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import java.util.Optional;
 import java.util.UUID;
 
+@RequestScoped
+@NoArgsConstructor(force = true)
 public class BuildingSimpleController implements BuildingController {
 
 
@@ -27,6 +32,7 @@ public class BuildingSimpleController implements BuildingController {
      * @param service character service
      * @param factory factory producing functions for conversion between DTO and entities
      */
+    @Inject
     public BuildingSimpleController(BuildingService service, DtoFunctionFactory factory) {
         this.service = service;
         this.factory = factory;

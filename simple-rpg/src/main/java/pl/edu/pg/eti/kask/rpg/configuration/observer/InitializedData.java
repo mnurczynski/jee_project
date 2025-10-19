@@ -1,8 +1,11 @@
-package pl.edu.pg.eti.kask.rpg.configuration.listener;
+package pl.edu.pg.eti.kask.rpg.configuration.observer;
 
-import jakarta.servlet.ServletContextEvent;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Initialized;
+import jakarta.enterprise.context.control.RequestContextController;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.annotation.WebListener;
 import lombok.SneakyThrows;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
@@ -22,31 +25,39 @@ import java.util.UUID;
  * cases of empty database. When using persistence storage application instance should be initialized only during first
  * run in order to init database with starting data. Good place to create first default admin user.
  */
-@WebListener//using annotation does not allow configuring order
+@ApplicationScoped
 public class InitializedData implements ServletContextListener {
 
     /**
      * Character service.
      */
-    private BuildingService buildingService;
+    private final BuildingService buildingService;
 
     /**
      * User service.
      */
-    private UserService userService;
+    private final UserService userService;
 
     /**
      * Profession service.
      */
-    private OrganizationalUnitService organizationalUnitService;
+    private final OrganizationalUnitService organizationalUnitService;
 
-    @Override
-    public void contextInitialized(ServletContextEvent event) {
-        buildingService = (BuildingService) event.getServletContext().getAttribute("buildingService");
-        userService = (UserService) event.getServletContext().getAttribute("userService");
-        organizationalUnitService = (OrganizationalUnitService) event.getServletContext().getAttribute("organizationalUnitService");
+    private final RequestContextController requestContextController;
+
+    @Inject
+    public InitializedData(BuildingService buildingService, OrganizationalUnitService organizationalUnitService, UserService userService, RequestContextController requestContextController) {
+        this.buildingService = buildingService;
+        this.organizationalUnitService = organizationalUnitService;
+        this.userService = userService;
+        this.requestContextController = requestContextController;
+    }
+
+
+    public void contextInitialized(@Observes @Initialized(ApplicationScoped.class) Object init) {
         init();
     }
+
 
     /**
      * Initializes database with some example values. Should be called after creating this object. This object should be
@@ -54,6 +65,7 @@ public class InitializedData implements ServletContextListener {
      */
     @SneakyThrows
     private void init() {
+        requestContextController.activate();
         User admin = User.builder()
                 .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                 .login("admin")
@@ -168,6 +180,8 @@ public class InitializedData implements ServletContextListener {
         buildingService.create(oio_a);
         buildingService.create(nano_a);
         buildingService.create(gmach_b);
+
+        requestContextController.deactivate();
     }
 
     /**

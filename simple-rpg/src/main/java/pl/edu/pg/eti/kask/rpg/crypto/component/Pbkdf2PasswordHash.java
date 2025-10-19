@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.kask.rpg.crypto.component;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import lombok.SneakyThrows;
 
 import javax.crypto.SecretKeyFactory;
@@ -13,6 +14,7 @@ import java.util.Base64;
  * Components responsible for hashing password. This implementation uses Password-Based Key Derivation Function 2
  * (PBKDF2) with SHA256 hash algorithm used in Hash-based Message Authentication Code (HMAC).
  */
+@ApplicationScoped
 public class Pbkdf2PasswordHash {
 
     /**
