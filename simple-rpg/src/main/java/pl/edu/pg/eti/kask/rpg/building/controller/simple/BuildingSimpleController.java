@@ -29,7 +29,7 @@ public class BuildingSimpleController implements BuildingController {
     private final DtoFunctionFactory factory;
 
     /**
-     * @param service character service
+     * @param service building service
      * @param factory factory producing functions for conversion between DTO and entities
      */
     @Inject
@@ -82,8 +82,7 @@ public class BuildingSimpleController implements BuildingController {
 
     public void deleteBuilding(UUID id)
     {
-        Optional<Building> building = service.find(id);
-        building.ifPresent(service::delete);
+        service.delete(id);
     }
 
 }

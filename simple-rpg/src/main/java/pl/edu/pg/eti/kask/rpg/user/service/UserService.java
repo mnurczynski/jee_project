@@ -22,7 +22,7 @@ public class UserService {
     private final Pbkdf2PasswordHash passwordHash;
 
     /**
-     * @param repository   repository for character entity
+     * @param repository   repository for building entity
      * @param passwordHash hash mechanism used for storing users' passwords
      */
     @Inject

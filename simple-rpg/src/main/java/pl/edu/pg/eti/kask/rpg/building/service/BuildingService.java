@@ -68,8 +68,12 @@ public class BuildingService {
         buildingRepository.update(building);
     }
 
-    public void delete(Building building)
+    public void delete(UUID id)
     {
-        buildingRepository.delete(building);
+        var building = find(id);
+        if(building.isPresent()) {
+            buildingRepository.delete(building.get());
+        }
+
     }
 }

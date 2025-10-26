@@ -2,7 +2,7 @@
 
 ## Avatar resources
 
-This package contains avatars for users' characters.
+This package contains avatars for users' buildings.
 
 ### Purpose
 
@@ -11,5 +11,5 @@ used on the deployment time in order to populate database with some initial data
 
 ### Credits
 
-All character's portraits were created using [DMHeroes](http://dmheroes.com/) developed by
+All building's portraits were created using [DMHeroes](http://dmheroes.com/) developed by
 [Christian Oesch](https://twitter.com/ChristianOesch).

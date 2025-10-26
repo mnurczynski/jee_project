@@ -14,6 +14,25 @@ GET http://localhost:9080/simple-rpg/api/buildings/525d3e7b-bb1f-4c13-bf17-926d1
 
 GET http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 
+
+###
+
+#
+
+GET http://localhost:9080/simple-rpg/api/organizational_units
+
+###
+
+#
+
+GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+
+###
+
+#
+
+DELETE http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+
 ###
 
 # Create new character.

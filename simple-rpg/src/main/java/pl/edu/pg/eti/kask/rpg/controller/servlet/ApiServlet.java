@@ -31,13 +31,13 @@ import java.util.regex.Pattern;
 public class ApiServlet extends HttpServlet {
 
     /**
-     * Controller for managing collections characters' repre
+     * Controller for managing collections buildings' repre
      * sentations.
      */
     private final BuildingController buildingController;
 
     /**
-     * Controller for managing collections professions' representations.
+     * Controller for managing collections organizationalUnits' representations.
      */
     private final OrganizationalUnitController organizationalUnitController;
 
@@ -86,6 +86,8 @@ public class ApiServlet extends HttpServlet {
          * All units.
          */
         public static final Pattern ORGANIZATIONAL_UNITS = Pattern.compile("/organizational_units/?");
+
+        public static final Pattern ORGANIZATIONAL_UNIT = Pattern.compile("/organizational_units/(%s)".formatted(UUID.pattern()));
 
         /**
          * All buildings assigned to a single unit.
@@ -172,6 +174,13 @@ public class ApiServlet extends HttpServlet {
                 response.getWriter().write(jsonb.toJson(userController.getUser(uuid)));
                 return;
             }
+            else if(path.matches(Patterns.ORGANIZATIONAL_UNIT.pattern()))
+            {
+                response.setContentType("application/json");
+                UUID uuid = extractUuid(Patterns.ORGANIZATIONAL_UNIT, path);
+                response.getWriter().write(jsonb.toJson(organizationalUnitController.getOrganizationalUnit(uuid)));
+                return;
+            }
 
         }
         response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -208,6 +217,10 @@ public class ApiServlet extends HttpServlet {
             } else if(path.matches(Patterns.USER_AVATAR.pattern())){
                 UUID uuid = extractUuid(Patterns.USER_AVATAR, path);
                 userController.deleteUserAvatar(uuid);
+                return;
+            } else if(path.matches(Patterns.ORGANIZATIONAL_UNIT.pattern())) {
+                UUID uuid = extractUuid(Patterns.ORGANIZATIONAL_UNIT, path);
+                organizationalUnitController.deleteOrganizationalUnit(uuid);
                 return;
             }
         }
@@ -266,7 +279,7 @@ public class ApiServlet extends HttpServlet {
 
     /**
      * Creates URL using host, port and context root from servlet request and any number of path elements. If any of
-     * path elements starts or ends with '/' character, that character is removed.
+     * path elements starts or ends with '/' building, that building is removed.
      *
      * @param request servlet request
      * @param paths   any (can be none) number of path elements

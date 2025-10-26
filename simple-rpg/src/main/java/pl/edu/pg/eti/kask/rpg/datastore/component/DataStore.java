@@ -88,14 +88,21 @@ public class DataStore {
     }
 
     /**
-     * Deletes existing character.
+     * Deletes existing building.
      *
-     * @param id id of character to be deleted
-     * @throws IllegalArgumentException if character with provided id does not exist
+     * @param id id of building to be deleted
+     * @throws IllegalArgumentException if building with provided id does not exist
      */
     public synchronized void deleteBuilding(UUID id) throws IllegalArgumentException {
         if (!buildings.removeIf(building -> building.getId().equals(id))) {
             throw new NotFoundException("The building with id \"%s\" does not exist".formatted(id));
+        }
+    }
+
+    public synchronized void deleteOrganizationalUnit(UUID id) throws IllegalArgumentException {
+        buildings.removeIf(building -> building.getOccupant().getId().equals(id));
+        if (!organizationalUnits.removeIf(organizationalUnit -> organizationalUnit.getId().equals(id))) {
+            throw new NotFoundException("Doesnt exist");
         }
     }
 
@@ -117,7 +124,7 @@ public class DataStore {
      * @throws IllegalArgumentException if user with provided id already exists
      */
     public synchronized void createUser(User value) throws IllegalArgumentException {
-        if (users.stream().anyMatch(character -> character.getId().equals(value.getId()))) {
+        if (users.stream().anyMatch(building -> building.getId().equals(value.getId()))) {
             throw new BadRequestException("The user id \"%s\" is not unique".formatted(value.getId()));
         }
         users.add(cloningUtility.clone(value));
@@ -130,7 +137,7 @@ public class DataStore {
      * @throws IllegalArgumentException if user with the same id does not exist
      */
     public synchronized void updateUser(User value) throws IllegalArgumentException {
-        if (users.removeIf(character -> character.getId().equals(value.getId()))) {
+        if (users.removeIf(building -> building.getId().equals(value.getId()))) {
             users.add(cloningUtility.clone(value));
         } else {
             throw new NotFoundException("The user with id \"%s\" does not exist".formatted(value.getId()));

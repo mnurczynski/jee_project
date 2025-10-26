@@ -29,7 +29,7 @@ import java.util.UUID;
 public class InitializedData implements ServletContextListener {
 
     /**
-     * Character service.
+     * Building service.
      */
     private final BuildingService buildingService;
 
@@ -39,7 +39,7 @@ public class InitializedData implements ServletContextListener {
     private final UserService userService;
 
     /**
-     * Profession service.
+     * OrganizationalUnit service.
      */
     private final OrganizationalUnitService organizationalUnitService;
 
@@ -128,7 +128,7 @@ public class InitializedData implements ServletContextListener {
                 .id(UUID.randomUUID())
                 .name("Instytut Okrętownictwa i Oceanotechniki ")
                 .required_occupancy(2000)
-                .type(pl.edu.pg.eti.kask.rpg.building.entity.Type.FACULTY)
+                .type(pl.edu.pg.eti.kask.rpg.building.entity.Type.INSTITUTE)
                 .build();
 
         organizationalUnitService.create(kwestura);

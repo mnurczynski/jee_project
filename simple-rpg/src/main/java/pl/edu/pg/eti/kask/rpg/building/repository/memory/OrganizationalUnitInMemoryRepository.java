@@ -36,7 +36,7 @@ public class OrganizationalUnitInMemoryRepository implements OrganizationalUnitR
 
     @Override
     public void delete(OrganizationalUnit entity) {
-        throw new UnsupportedOperationException("Operation not implemented.");
+        store.deleteOrganizationalUnit(entity.getId());
     }
 
     @Override

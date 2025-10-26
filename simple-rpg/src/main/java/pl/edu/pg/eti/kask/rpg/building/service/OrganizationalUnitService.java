@@ -47,8 +47,10 @@ public class OrganizationalUnitService {
         organizationalUnitRepository.update(unit);
     }
 
-    public void delete(OrganizationalUnit unit)
+    public void delete(UUID id)
     {
-        organizationalUnitRepository.delete(unit);
+        var unit = find(id);
+        unit.ifPresent(organizationalUnit -> organizationalUnitRepository.delete(organizationalUnit));
+
     }
 }
