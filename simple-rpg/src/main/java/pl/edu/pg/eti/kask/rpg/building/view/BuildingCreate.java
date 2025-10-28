@@ -156,8 +156,6 @@ public class BuildingCreate implements Serializable {
         return conversation.getId();
     }
 
-    public String getBuildingPortraitUrl() {
-        return "/view/api/v1/buildings/new/portrait?cid=%s".formatted(getConversationId());
-    }
+
 
 }
