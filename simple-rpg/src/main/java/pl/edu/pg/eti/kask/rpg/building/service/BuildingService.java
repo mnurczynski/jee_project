@@ -2,11 +2,11 @@ package pl.edu.pg.eti.kask.rpg.building.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.NotFoundException;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.OrganizationalUnitRepository;
-import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
 

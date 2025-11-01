@@ -2,12 +2,12 @@ package pl.edu.pg.eti.kask.rpg.datastore.component;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.NotFoundException;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
-import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.BadRequestException;
-import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 import pl.edu.pg.eti.kask.rpg.serialization.component.CloningUtility;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 
@@ -165,4 +165,12 @@ public class DataStore {
         return entity;
     }
 
+    public void updateOrganizationalUnit(OrganizationalUnit value) {
+        OrganizationalUnit entity = cloningUtility.clone(value);
+        if (organizationalUnits.removeIf(organizationalUnit -> organizationalUnit.getId().equals(value.getId()))) {
+            organizationalUnits.add(entity);
+        } else {
+            throw new NotFoundException("The unit with id \"%s\" does not exist".formatted(value.getId()));
+        }
+    }
 }

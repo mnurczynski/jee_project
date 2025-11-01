@@ -1,8 +1,8 @@
-package pl.edu.pg.eti.kask.rpg.building.controller.simple;
+package pl.edu.pg.eti.kask.rpg.building.controller.rest;
 
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import lombok.NoArgsConstructor;
+import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.Path;
 import pl.edu.pg.eti.kask.rpg.building.controller.api.BuildingController;
 import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingResponse;
 import pl.edu.pg.eti.kask.rpg.building.dto.GetBuildingsResponse;
@@ -11,14 +11,13 @@ import pl.edu.pg.eti.kask.rpg.building.dto.PutBuildingRequest;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.service.BuildingService;
 import pl.edu.pg.eti.kask.rpg.component.DtoFunctionFactory;
-import pl.edu.pg.eti.kask.rpg.controller.servlet.exception.NotFoundException;
 
 import java.util.Optional;
 import java.util.UUID;
 
-@RequestScoped
-@NoArgsConstructor(force = true)
-public class BuildingSimpleController implements BuildingController {
+
+@Path("")
+public class BuildingRestController implements BuildingController {
 
 
     private final BuildingService service;
@@ -28,12 +27,13 @@ public class BuildingSimpleController implements BuildingController {
      */
     private final DtoFunctionFactory factory;
 
+
     /**
      * @param service building service
      * @param factory factory producing functions for conversion between DTO and entities
      */
     @Inject
-    public BuildingSimpleController(BuildingService service, DtoFunctionFactory factory) {
+    public BuildingRestController(BuildingService service, DtoFunctionFactory factory) {
         this.service = service;
         this.factory = factory;
     }

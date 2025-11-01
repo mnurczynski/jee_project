@@ -41,6 +41,6 @@ public class OrganizationalUnitInMemoryRepository implements OrganizationalUnitR
 
     @Override
     public void update(OrganizationalUnit entity) {
-        throw new UnsupportedOperationException("Operation not implemented.");
+        store.updateOrganizationalUnit(entity);
     }
 }

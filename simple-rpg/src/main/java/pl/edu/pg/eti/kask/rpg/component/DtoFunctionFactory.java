@@ -74,6 +74,9 @@ public class DtoFunctionFactory {
         return new UpdateBuildingWithRequestFunction();
     }
 
+    public RequestToOrganizationalUnitFunction requestToOrganizationalUnit() {return new RequestToOrganizationalUnitFunction();}
+
+    public UpdateOrganizationalUnitWithRequestFunction updateOrganizationalUnit() {return new UpdateOrganizationalUnitWithRequestFunction();}
     /**
      * Returns a function to convert a {@link PutUserRequest} to a {@link User}.
      *

@@ -104,6 +104,34 @@ GET http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441
 
 ###
 
+PUT http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
+Content-Type: application/json
+
+{
+  "name": "Wydział Chemiczny",
+  "type": "FACULTY",
+  "required_occupancy": 2340
+}
+
+###
+
+GET http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
+
+###
+
+PATCH http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
+Content-Type: application/json
+
+{
+  "required_occupancy": 2650
+}
+
+###
+
+DELETE http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
+
+###
+
 # Get all user characters.
 
 GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/buildings
