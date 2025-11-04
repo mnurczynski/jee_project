@@ -1,4 +1,5 @@
 # Get all characters.
+###
 
 GET http://localhost:9080/simple-rpg/api/buildings
 
@@ -6,20 +7,20 @@ GET http://localhost:9080/simple-rpg/api/buildings
 
 # Get single character.
 
-GET http://localhost:9080/simple-rpg/api/buildings/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+GET http://localhost:9080/simple-rpg/api/organizational_units/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/buildings/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
 
 ###
 
 # Get single character. Not existing, created later.
 
-GET http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 
 
 ###
 
 #
 
-GET http://localhost:9080/simple-rpg/api/organizational_units
+GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings
 
 ###
 
@@ -37,7 +38,7 @@ DELETE http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4
 
 # Create new character.
 
-PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+PUT http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 Content-Type: application/json
 
 {
@@ -54,7 +55,7 @@ Content-Type: application/json
 
 # Create new character. Not existing profession.
 
-PUT http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b6fefe
+PUT http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867ffff4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b6fefe
 Content-Type: application/json
 
 {
@@ -70,7 +71,7 @@ Content-Type: application/json
 
 # Update character.
 
-PATCH http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+PATCH http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 Content-Type: application/json
 
 {
@@ -82,7 +83,7 @@ Content-Type: application/json
 
 # Delete character.
 
-DELETE http://localhost:9080/simple-rpg/api/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+DELETE http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 
 ###
 

@@ -28,22 +28,22 @@ public interface BuildingController {
     GetBuildingsResponse getUserBuildings(@PathParam("id") UUID id);
 
     @GET
-    @Path("/buildings/{id}")
+    @Path("/organizational_units/{org_id}/buildings/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    GetBuildingResponse getBuilding(@PathParam("id") UUID uuid);
+    GetBuildingResponse getBuilding(@PathParam("id") UUID uuid, @PathParam("org_id") UUID org_uuid);
 
     @PUT
-    @Path("/buildings/{id}")
+    @Path("/organizational_units/{org_id}/buildings/{id}")
     @Consumes({MediaType.APPLICATION_JSON})
-    void putBuilding(@PathParam("id") UUID id, PutBuildingRequest request);
+    void putBuilding(@PathParam("id") UUID id, PutBuildingRequest request,  @PathParam("org_id") UUID org_uuid);
 
     @PATCH
-    @Path("/buildings/{id}")
+    @Path("/organizational_units/{org_id}/buildings/{id}")
     @Consumes({MediaType.APPLICATION_JSON})
-    void patchBuilding(@PathParam("id") UUID id, PatchBuildingRequest request);
+    void patchBuilding(@PathParam("id") UUID id, PatchBuildingRequest request,  @PathParam("org_id") UUID org_uuid);
 
     @DELETE
-    @Path("/buildings/{id}")
-    void deleteBuilding(@PathParam("id") UUID id);
+    @Path("/organizational_units/{org_id}/buildings/{id}")
+    void deleteBuilding(@PathParam("id") UUID id,  @PathParam("org_id") UUID org_uuid);
 
 }

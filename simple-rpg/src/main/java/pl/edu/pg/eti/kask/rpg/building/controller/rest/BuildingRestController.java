@@ -1,6 +1,7 @@
 package pl.edu.pg.eti.kask.rpg.building.controller.rest;
 
 import jakarta.inject.Inject;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.Path;
 import pl.edu.pg.eti.kask.rpg.building.controller.api.BuildingController;
@@ -57,19 +58,34 @@ public class BuildingRestController implements BuildingController {
 
 
 
-    public GetBuildingResponse getBuilding(UUID id)
+    public GetBuildingResponse getBuilding(UUID id, UUID org_uuid)
     {
-        return service.find(id).map(factory.buildingToResponse()).orElseThrow(NotFoundException::new);
+        var building = service.find(id);
+        if(building.isPresent() && building.get().getOccupant().getId().equals(org_uuid)) {
+            return factory.buildingToResponse().apply(building.get());
+        }
+        throw new NotFoundException();
     }
 
-    public void putBuilding(UUID id, PutBuildingRequest request)
+    public void putBuilding(UUID id, PutBuildingRequest request, UUID org_uuid)
     {
-        deleteBuilding(id); // Deleting building if already exists
+        try
+        {
+            deleteBuilding(id, org_uuid); // Deleting building if already exists
+        }
+        catch(NotFoundException ignored)
+        {
+
+        }
+        if(!request.getOrganizationalUnit().equals(org_uuid))
+        {
+            throw new BadRequestException("Organizational unit does not match");
+        }
         service.create(factory.requestToBuilding().apply(id, request));
     }
 
 
-    public void patchBuilding(UUID id, PatchBuildingRequest request)
+    public void patchBuilding(UUID id, PatchBuildingRequest request, UUID org_uuid)
     {
         Optional<Building> building = service.find(id);
         if(building.isPresent())
@@ -80,9 +96,17 @@ public class BuildingRestController implements BuildingController {
         throw new NotFoundException();
     }
 
-    public void deleteBuilding(UUID id)
+    public void deleteBuilding(UUID id, UUID org_uuid)
     {
-        service.delete(id);
+        var building = service.find(id);
+        if(building.isPresent() && building.get().getOccupant().getId().equals(org_uuid))
+        {
+            service.delete(id);
+        }
+        else
+        {
+            throw new NotFoundException();
+        }
     }
 
 }
