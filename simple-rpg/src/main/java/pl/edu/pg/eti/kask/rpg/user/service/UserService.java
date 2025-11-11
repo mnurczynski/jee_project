@@ -2,6 +2,7 @@ package pl.edu.pg.eti.kask.rpg.user.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.crypto.component.Pbkdf2PasswordHash;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
@@ -32,7 +33,7 @@ public class UserService {
     }
 
 
-
+    @Transactional
     public void saveUserAvatar(UUID id, byte [] avatar)
     {
         repository.saveAvatar(id, avatar);
@@ -43,6 +44,7 @@ public class UserService {
         return repository.findAvatar(id);
     }
 
+    @Transactional
     public void deleteUserAvatar(UUID id)
     {
         repository.deleteAvatar(id);
@@ -65,6 +67,7 @@ public class UserService {
         return repository.findByLogin(login);
     }
 
+
     public Optional<List<User>> findAll() {return Optional.of(repository.findAll());}
 
     /**
@@ -72,7 +75,11 @@ public class UserService {
      *
      * @param user new user to be saved
      */
+    @Transactional
     public void create(User user) {
+        if (repository.find(user.getId()).isPresent()) {
+            throw new IllegalArgumentException("User already exists.");
+        }
         user.setPassword(passwordHash.generate(user.getPassword().toCharArray()));
         repository.create(user);
     }

@@ -1,11 +1,12 @@
-package pl.edu.pg.eti.kask.rpg.user.repository.memory;
+package pl.edu.pg.eti.kask.rpg.user.repository.persistence;
 
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceContext;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.WebApplicationException;
-import pl.edu.pg.eti.kask.rpg.datastore.component.DataStore;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
 import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
 
@@ -20,56 +21,55 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RequestScoped
-public class UserInMemoryRepository implements UserRepository {
+public class UserPersistenceRepository implements UserRepository {
     /**
      * Underlying data store. In future should be replaced with database connection.
      */
-    private final DataStore store;
+    private EntityManager em;
 
     @Resource(name = "USER_AVATAR_PATH")
     private String userAvatarPath;
 
-
-    /**
-     * @param store data store
-     */
-    @Inject
-    public UserInMemoryRepository(DataStore store) {
-        this.store = store;
+    @PersistenceContext
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
+
 
     @Override
     public Optional<User> find(UUID id) {
-        return store.findAllUsers().stream()
-                .filter(user -> user.getId().equals(id))
-                .findFirst();
+        return Optional.ofNullable(em.find(User.class, id));
     }
 
     @Override
     public List<User> findAll() {
-        return store.findAllUsers();
+        return em.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
     public void create(User entity) {
-        store.createUser(entity);
+        em.persist(entity);
     }
 
     @Override
     public void delete(User entity) {
-        throw new UnsupportedOperationException("Not implemented.");
+        em.remove(em.find(User.class, entity.getId()));
     }
 
     @Override
     public void update(User entity) {
-        store.updateUser(entity);
+        em.merge(entity);
     }
 
     @Override
     public Optional<User> findByLogin(String login) {
-        return store.findAllUsers().stream()
-                .filter(user -> user.getLogin().equals(login))
-                .findFirst();
+        try {
+            return Optional.of(em.createQuery("select u from User u where u.login = :login", User.class)
+                    .setParameter("login", login)
+                    .getSingleResult());
+        } catch(NoResultException e) {
+            return Optional.empty();
+        }
     }
 
     private Path getUserAvatarPath(UUID id) {

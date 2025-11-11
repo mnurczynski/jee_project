@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.kask.rpg.user.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
@@ -16,12 +17,19 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString(callSuper = false)
 @EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name="users")
 public class User implements Serializable {
 
+    @Id
     UUID id;
     String login;
     Type type;
     LocalDate hiringDate;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "buildingAdministrator",  cascade = CascadeType.REMOVE)
     List<Building> buildings;
 
     @ToString.Exclude

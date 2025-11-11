@@ -2,6 +2,7 @@ package pl.edu.pg.eti.kask.rpg.building.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
@@ -58,16 +59,25 @@ public class BuildingService {
         throw new NotFoundException("Organizational unit not found");
     }
 
+    @Transactional
     public void create(Building building)
     {
+        if (buildingRepository.find(building.getId()).isPresent()) {
+            throw new IllegalArgumentException("Building already exists.");
+        }
+        if (organizationalUnitRepository.find(building.getOccupant().getId()).isEmpty()) {
+            throw new IllegalArgumentException("Unit does not exists.");
+        }
         buildingRepository.create(building);
     }
 
+    @Transactional
     public void update(Building building)
     {
         buildingRepository.update(building);
     }
 
+    @Transactional
     public void delete(UUID id)
     {
         var building = find(id);

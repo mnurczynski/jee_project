@@ -2,6 +2,7 @@ package pl.edu.pg.eti.kask.rpg.building.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
@@ -36,17 +37,19 @@ public class OrganizationalUnitService {
         return Optional.ofNullable(organizationalUnitRepository.findAll());
     }
 
-
+    @Transactional
     public void create(OrganizationalUnit unit)
     {
         organizationalUnitRepository.create(unit);
     }
 
+    @Transactional
     public void update(OrganizationalUnit unit)
     {
         organizationalUnitRepository.update(unit);
     }
 
+    @Transactional
     public void delete(UUID id)
     {
         var unit = find(id);
