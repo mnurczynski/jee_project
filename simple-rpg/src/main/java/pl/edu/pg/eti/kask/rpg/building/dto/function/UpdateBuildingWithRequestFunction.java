@@ -12,6 +12,7 @@ public class UpdateBuildingWithRequestFunction implements BiFunction<Building, P
                 .name(entity.getName())
                 .number(request.getNumber())
                 .area(entity.getArea())
+                .buildingAdministrator(entity.getBuildingAdministrator())
                 .maximumOccupancy(request.getMaximumOccupancy())
                 .occupant(entity.getOccupant())
                 .build();

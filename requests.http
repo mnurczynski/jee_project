@@ -1,14 +1,15 @@
 # Get all characters.
 ###
-
+// @no-cookie-jar
 GET http://localhost:9080/simple-rpg/api/buildings
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 
 ###
 
 # Get single character.
 
 GET http://localhost:9080/simple-rpg/api/organizational_units/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/buildings/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
-
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 ###
 
 # Get single character. Not existing, created later.
@@ -27,6 +28,7 @@ GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d
 #
 
 GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 
 ###
 
@@ -88,7 +90,6 @@ DELETE http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4
 ###
 
 # Get all professions.
-
 GET http://localhost:9080/simple-rpg/api/organizational_units
 
 ###
@@ -107,6 +108,7 @@ GET http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441
 
 PUT http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 
 {
   "name": "Wydział Chemiczny",
@@ -166,7 +168,19 @@ GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071
 GET http://localhost:9080/simple-rpg/api/users/c07cab55-a56f-4d67-b351-175bb7a94b7a/buildings
 
 
-# Create character portrait.
+###
+
+PUT http://localhost:9080/simple-rpg/api/users/c07cab55-a56f-4d67-b351-175bb7a94b7a
+Content-Type: application/json
+
+{
+  "login": "Adam",
+  "type": "building_administrator",
+  "hiringDate": "2000-01-11"
+}
+
+
+
 
 ###
 PUT http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4e/avatar

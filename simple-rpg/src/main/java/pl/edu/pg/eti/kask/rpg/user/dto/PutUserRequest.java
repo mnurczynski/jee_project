@@ -1,10 +1,8 @@
 package pl.edu.pg.eti.kask.rpg.user.dto;
 
 import lombok.*;
-import pl.edu.pg.eti.kask.rpg.user.entity.Type;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * PUT user request. Contains only fields that can be set during user creation. User is defined in
@@ -19,9 +17,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class PutUserRequest {
 
-    UUID id;
     String login;
-    Type type;
+    String type;
     LocalDate hiringDate;
 
 

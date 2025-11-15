@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUserResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUsersResponse;
+import pl.edu.pg.eti.kask.rpg.user.dto.PutUserRequest;
 
 import java.awt.image.BufferedImage;
 import java.util.UUID;
@@ -34,4 +35,9 @@ public interface UserController {
     @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
     public GetUsersResponse getUsers();
+
+    @PUT
+    @Path("/users/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void putUser(@PathParam("id") UUID id, PutUserRequest request);
 }

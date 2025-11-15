@@ -14,7 +14,7 @@ public class RequestToUserFunction implements BiFunction<UUID, PutUserRequest, U
     @Override
     public User apply(UUID id, PutUserRequest request) {
         return User.builder()
-                .id(request.getId())
+                .id(id)
                 .login(request.getLogin())
                 .hiringDate(request.getHiringDate())
                 .type(request.getType())

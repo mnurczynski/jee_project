@@ -1,5 +1,7 @@
 package pl.edu.pg.eti.kask.rpg.user.controller.rest;
 
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.Path;
@@ -8,6 +10,8 @@ import pl.edu.pg.eti.kask.rpg.component.DtoFunctionFactory;
 import pl.edu.pg.eti.kask.rpg.user.controller.api.UserController;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUserResponse;
 import pl.edu.pg.eti.kask.rpg.user.dto.GetUsersResponse;
+import pl.edu.pg.eti.kask.rpg.user.dto.PutUserRequest;
+import pl.edu.pg.eti.kask.rpg.user.entity.Type;
 import pl.edu.pg.eti.kask.rpg.user.service.UserService;
 
 import javax.imageio.ImageIO;
@@ -18,6 +22,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Path("")
+@PermitAll
 public class UserRestController implements UserController {
 
     private final UserService userService;
@@ -31,6 +36,7 @@ public class UserRestController implements UserController {
     }
 
     @Override
+    @RolesAllowed(Type.MANAGER)
     public BufferedImage getUserAvatar(UUID id) {
         var avatar = userService.getUserAvatar(id);
         if(avatar.isPresent())
@@ -46,6 +52,7 @@ public class UserRestController implements UserController {
     }
 
     @Override
+    @RolesAllowed(Type.MANAGER)
     public void putUserAvatar(UUID id, BufferedImage avatar) {
         var os = new ByteArrayOutputStream();
         try {
@@ -59,17 +66,28 @@ public class UserRestController implements UserController {
     }
 
     @Override
+    @RolesAllowed(Type.MANAGER)
     public void deleteUserAvatar(UUID id) {
         userService.deleteUserAvatar(id);
     }
 
     @Override
+    @RolesAllowed(Type.MANAGER)
     public GetUserResponse getUser(UUID id) {
         return userService.find(id).map(factory.userToResponse()).orElseThrow(NotFoundException::new);
     }
 
     @Override
+    @RolesAllowed(Type.MANAGER)
     public GetUsersResponse getUsers() {
         return userService.findAll().map(factory.usersToResponse()).orElseThrow(NotFoundException::new);
     }
+
+    @Override
+    @PermitAll
+    public void putUser(UUID id, PutUserRequest request) {
+        userService.create(factory.requestToUser().apply(id, request));
+    }
+
+
 }

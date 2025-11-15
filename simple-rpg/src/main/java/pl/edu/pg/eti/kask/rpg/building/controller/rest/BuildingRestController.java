@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.kask.rpg.building.controller.rest;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
@@ -12,12 +13,14 @@ import pl.edu.pg.eti.kask.rpg.building.dto.PutBuildingRequest;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.service.BuildingService;
 import pl.edu.pg.eti.kask.rpg.component.DtoFunctionFactory;
+import pl.edu.pg.eti.kask.rpg.user.entity.Type;
 
 import java.util.Optional;
 import java.util.UUID;
 
 
 @Path("")
+@RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
 public class BuildingRestController implements BuildingController {
 
 
@@ -39,41 +42,43 @@ public class BuildingRestController implements BuildingController {
         this.factory = factory;
     }
 
+    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
     public GetBuildingsResponse getBuildings()
     {
-        return service.findAll().map(factory.buildingsToResponse()).orElseThrow(NotFoundException::new);
+        return service.findAllForCallerPrincipal().map(factory.buildingsToResponse()).orElseThrow(NotFoundException::new);
     }
 
-
+    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
     public GetBuildingsResponse getOrganizationalUnitBuildings(UUID id)
     {
         return service.findAllByOrganizationalUnit(id).map(factory.buildingsToResponse()).orElseThrow(NotFoundException::new);
     }
 
-
+    @RolesAllowed( Type.MANAGER)
     public GetBuildingsResponse getUserBuildings(UUID id)
     {
         return service.findAllByUser(id).map(factory.buildingsToResponse()).orElseThrow(NotFoundException::new);
     }
 
 
-
+    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
     public GetBuildingResponse getBuilding(UUID id, UUID org_uuid)
     {
-        var building = service.find(id);
+        var building = service.findForCallerPrincipal(id);
         if(building.isPresent() && building.get().getOccupant().getId().equals(org_uuid)) {
             return factory.buildingToResponse().apply(building.get());
         }
         throw new NotFoundException();
     }
 
+    @RolesAllowed({Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
     public void putBuilding(UUID id, PutBuildingRequest request, UUID org_uuid)
     {
         try
         {
             deleteBuilding(id, org_uuid); // Deleting building if already exists
         }
-        catch(NotFoundException ignored)
+        catch(Exception ignored)
         {
 
         }
@@ -81,10 +86,10 @@ public class BuildingRestController implements BuildingController {
         {
             throw new BadRequestException("Organizational unit does not match");
         }
-        service.create(factory.requestToBuilding().apply(id, request));
+        service.createForCallerPrincipal(factory.requestToBuilding().apply(id, request));
     }
 
-
+    @RolesAllowed({Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
     public void patchBuilding(UUID id, PatchBuildingRequest request, UUID org_uuid)
     {
         Optional<Building> building = service.find(id);
@@ -96,6 +101,7 @@ public class BuildingRestController implements BuildingController {
         throw new NotFoundException();
     }
 
+    @RolesAllowed({Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
     public void deleteBuilding(UUID id, UUID org_uuid)
     {
         var building = service.find(id);

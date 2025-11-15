@@ -21,7 +21,7 @@ public class GetUserResponse {
 
     UUID id;
     String login;
-    Type type;
+    String type;
     LocalDate hiringDate;
 
 }

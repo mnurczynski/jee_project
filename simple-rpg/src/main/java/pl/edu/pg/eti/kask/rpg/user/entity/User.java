@@ -24,7 +24,7 @@ public class User implements Serializable {
     @Id
     UUID id;
     String login;
-    Type type;
+    String type;
     LocalDate hiringDate;
 
     @ToString.Exclude
