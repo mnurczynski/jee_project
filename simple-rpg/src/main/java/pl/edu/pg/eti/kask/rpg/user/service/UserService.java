@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.ForbiddenException;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.user.entity.Type;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
@@ -63,9 +64,21 @@ public class UserService {
      * @param id user's id
      * @return container (can be empty) with user
      */
-    @RolesAllowed(Type.MANAGER)
+    @RolesAllowed({Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
     public Optional<User> find(UUID id) {
-        return repository.find(id);
+        var user = repository.find(id);
+        if(securityContext.isCallerInRole(Type.MANAGER))
+        {
+            return user;
+        }
+        if(user.isPresent())
+        {
+            if(user.get().getLogin().equals(securityContext.getCallerPrincipal().getName()))
+            {
+                return user;
+            }
+        }
+        throw new ForbiddenException();
     }
 
     /**

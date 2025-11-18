@@ -75,10 +75,16 @@ public class BuildingService {
         return findAllByUser(user.getId());
     }
 
-    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
+    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER})
     public Optional<List<Building>> findAllByUser(UUID id) {
         var user = userRepository.find(id);
         if (user.isPresent()) {
+            var u = user.get();
+            var currentUserLogin = securityContext.getCallerPrincipal().getName();
+            if(!(u.getLogin().equals(currentUserLogin)) && !securityContext.isCallerInRole(Type.MANAGER))
+            {
+                throw new ForbiddenException();
+            }
             return buildingRepository.findAllByUser(user.get());
         }
         throw new NotFoundException("User not found");
@@ -106,6 +112,7 @@ public class BuildingService {
         buildingRepository.create(building);
     }
 
+    @Transactional
     @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER})
     public void createForCallerPrincipal(Building building) {
         User user = userRepository.findByLogin(securityContext.getCallerPrincipal().getName())

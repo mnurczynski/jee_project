@@ -2,6 +2,7 @@ package pl.edu.pg.eti.kask.rpg.building.controller.rest;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
+import jakarta.security.enterprise.SecurityContext;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.Path;
@@ -31,15 +32,17 @@ public class BuildingRestController implements BuildingController {
      */
     private final DtoFunctionFactory factory;
 
+    private final SecurityContext securityContext;
 
     /**
      * @param service building service
      * @param factory factory producing functions for conversion between DTO and entities
      */
     @Inject
-    public BuildingRestController(BuildingService service, DtoFunctionFactory factory) {
+    public BuildingRestController(BuildingService service, DtoFunctionFactory factory, SecurityContext securityContext) {
         this.service = service;
         this.factory = factory;
+        this.securityContext = securityContext;
     }
 
     @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
@@ -54,7 +57,7 @@ public class BuildingRestController implements BuildingController {
         return service.findAllByOrganizationalUnit(id).map(factory.buildingsToResponse()).orElseThrow(NotFoundException::new);
     }
 
-    @RolesAllowed( Type.MANAGER)
+    @RolesAllowed( {Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
     public GetBuildingsResponse getUserBuildings(UUID id)
     {
         return service.findAllByUser(id).map(factory.buildingsToResponse()).orElseThrow(NotFoundException::new);

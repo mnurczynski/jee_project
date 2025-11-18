@@ -72,7 +72,7 @@ public class UserRestController implements UserController {
     }
 
     @Override
-    @RolesAllowed(Type.MANAGER)
+    @RolesAllowed({Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
     public GetUserResponse getUser(UUID id) {
         return userService.find(id).map(factory.userToResponse()).orElseThrow(NotFoundException::new);
     }

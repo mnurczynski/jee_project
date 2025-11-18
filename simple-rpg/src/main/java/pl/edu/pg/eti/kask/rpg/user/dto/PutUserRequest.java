@@ -19,6 +19,7 @@ public class PutUserRequest {
 
     String login;
     String type;
+    String password;
     LocalDate hiringDate;
 
 

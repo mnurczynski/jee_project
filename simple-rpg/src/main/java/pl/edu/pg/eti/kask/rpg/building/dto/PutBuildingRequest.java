@@ -13,7 +13,6 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class PutBuildingRequest {
     private UUID organizationalUnit;
-    private UUID buildingAdministrator;
     private int number;
     private String name;
     private double area;

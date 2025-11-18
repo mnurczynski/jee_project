@@ -64,7 +64,7 @@ public class UserPersistenceRepository implements UserRepository {
     @Override
     public Optional<User> findByLogin(String login) {
         try {
-            return Optional.of(em.createQuery("select u from User u where u.login = :login", User.class)
+            return Optional.of(em.createQuery("select d from User d where d.login = :login", User.class)
                     .setParameter("login", login)
                     .getSingleResult());
         } catch(NoResultException e) {

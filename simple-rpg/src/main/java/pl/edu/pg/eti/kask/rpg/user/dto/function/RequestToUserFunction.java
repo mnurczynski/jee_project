@@ -13,12 +13,14 @@ public class RequestToUserFunction implements BiFunction<UUID, PutUserRequest, U
 
     @Override
     public User apply(UUID id, PutUserRequest request) {
-        return User.builder()
+        var user = User.builder()
                 .id(id)
                 .login(request.getLogin())
                 .hiringDate(request.getHiringDate())
                 .type(request.getType())
                 .build();
+        user.setPassword(request.getPassword());
+        return user;
     }
 
 }

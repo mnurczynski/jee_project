@@ -1,14 +1,37 @@
 # Get all characters.
+
+# admin: YWRtaW46YWRtaW5hZG1pbg==
+# kevin: S2V2aW46dXNlcnVzZXI=
+# adam: QWRhbTp2ZXJ5X3dlYWtfcGFzc3dvcmQ=
+
 ###
-// @no-cookie-jar
+
+
+//@no-cookie-jar
 GET http://localhost:9080/simple-rpg/api/buildings
 Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
+
+
+###
+
+
+//@no-cookie-jar
+GET http://localhost:9080/simple-rpg/api/buildings
+Authorization: Basic S2V2aW46dXNlcnVzZXI=
 
 ###
 
 # Get single character.
-
+//@no-cookie-jar
 GET http://localhost:9080/simple-rpg/api/organizational_units/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76/buildings/525d3e7b-bb1f-4c13-bf17-926d1a12e4c0
+Authorization: Basic S2V2aW46dXNlcnVzZXI=
+###
+
+
+
+# Get single character.
+//@no-cookie-jar
+GET http://localhost:9080/simple-rpg/api/organizational_units/046c9c1f-3f50-4a45-a254-dc99e481c0cb/buildings/f08ef7e3-7f2a-4378-b1fb-2922d730c70d
 Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 ###
 
@@ -20,35 +43,36 @@ GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d
 ###
 
 #
-
-GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings
+//@no-cookie-jar
+GET http://localhost:9080/simple-rpg/api/organizational_units/
+Authorization: Basic S2V2aW46dXNlcnVzZXI=
 
 ###
 
-#
 
+//@no-cookie-jar
 GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
-Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
+Authorization: Basic S2V2aW46dXNlcnVzZXI=
 
 ###
 
 #
-
+//@no-cookie-jar
 DELETE http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4
-
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 ###
 
 # Create new character.
-
+//@no-cookie-jar
 PUT http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
 Content-Type: application/json
+Authorization: Basic S2V2aW46dXNlcnVzZXI=
 
 {
   "name": "Centrum Nanotechnologii B",
   "area": 2320,
   "number": 18,
   "maximumOccupancy": 300,
-  "buildingAdministrator": "81e1c2a9-7f57-439b-b53d-6db88b071e4e",
   "organizationalUnit": "5d1da2ae-6a14-4b6d-8b4f-d117867118d4"
 }
 
@@ -57,16 +81,17 @@ Content-Type: application/json
 
 # Create new character. Not existing profession.
 
-PUT http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867ffff4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b6fefe
+//@no-cookie-jar
+PUT http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b6fefe
 Content-Type: application/json
+Authorization: Basic QWRhbTp2ZXJ5X3dlYWtfcGFzc3dvcmQ=
 
 {
   "name": "Nowe ETI",
   "area": 4320,
   "number": 42,
   "maximumOccupancy": 2000,
-  "buildingAdministrator": "81e1c2a9-7f57-439b-b53d-6db88b071e4e",
-  "organizationalUnit": "5d1da2ae-6a14-4b6d-8b4f-d117867ffff4"
+  "organizationalUnit": "d8b50a43-ed45-4441-9bcb-5db7782b47f6"
 }
 
 ###
@@ -84,9 +109,9 @@ Content-Type: application/json
 ###
 
 # Delete character.
-
+//@no-cookie-jar
 DELETE http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d-8b4f-d117867118d4/buildings/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
-
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 ###
 
 # Get all professions.
@@ -105,7 +130,7 @@ GET http://localhost:9080/simple-rpg/api/organizational_units/5d1da2ae-6a14-4b6d
 GET http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6/buildings
 
 ###
-
+//@no-cookie-jar
 PUT http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
@@ -121,9 +146,10 @@ Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 GET http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
 
 ###
-
+//@no-cookie-jar
 PATCH http://localhost:9080/simple-rpg/api/organizational_units/d8b50a43-ed45-4441-9bcb-5db7782b47f6
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 
 {
   "required_occupancy": 2650
@@ -147,7 +173,9 @@ GET http://localhost:9080/simple-rpg/api/users/ed6cfb2a-cad7-47dd-9b56-9d1e3c7a4
 
 ###
 
+//@no-cookie-jar
 GET http://localhost:9080/simple-rpg/api/users/
+Authorization: Basic YWRtaW46YWRtaW5hZG1pbg==
 
 ###
 
@@ -160,13 +188,16 @@ GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071
 
 # Get user not existing
 
-GET http://localhost:9080/simple-rpg/api/users/81e1c2a9-7f57-439b-b53d-6db88b071e4f
+//@no-cookie-jar
+GET http://localhost:9080/simple-rpg/api/users/c07cab55-a56f-4d67-b351-175bb7a94b7a
+Authorization: Basic QWRhbTp2ZXJ5X3dlYWtfcGFzc3dvcmQ=
 
 # Get all user characters. Not existing.
 
 ###
+//@no-cookie-jar
 GET http://localhost:9080/simple-rpg/api/users/c07cab55-a56f-4d67-b351-175bb7a94b7a/buildings
-
+Authorization: Basic QWRhbTp2ZXJ5X3dlYWtfcGFzc3dvcmQ=
 
 ###
 
@@ -176,7 +207,8 @@ Content-Type: application/json
 {
   "login": "Adam",
   "type": "building_administrator",
-  "hiringDate": "2000-01-11"
+  "hiringDate": "2000-01-11",
+  "password": "very_weak_password"
 }
 
 

@@ -14,12 +14,15 @@
 
     <application type="war" location="simple-rpg-1.0-SNAPSHOT.war">
         <application-bnd>
-            <security-role name="admin">
-                <group name="admin" access-id="group:jdbc/SimpleRpgCharacters/admin"/>
-                <run-as userid="admin-service"/>
+            <security-role name="manager">
+                <group name="manager" access-id="group:jdbc/SimpleRpgCharacters/manager"/>
+                <run-as userid="admin"/>
             </security-role>
-            <security-role name="user">
-                <group name="user" access-id="group:jdbc/SimpleRpgCharacters/user"/>
+            <security-role name="building_administrator">
+                <group name="building_administrator" access-id="group:jdbc/SimpleRpgCharacters/building_administrator"/>
+            </security-role>
+            <security-role name="read_only_user">
+                <group name="read_only_user" access-id="group:jdbc/SimpleRpgCharacters/read_only_user"/>
             </security-role>
         </application-bnd>
     </application>

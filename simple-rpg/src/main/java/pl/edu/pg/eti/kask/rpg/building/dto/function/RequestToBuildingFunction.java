@@ -20,7 +20,6 @@ public class RequestToBuildingFunction implements BiFunction<UUID, PutBuildingRe
                 .occupant(OrganizationalUnit.builder()
                         .id(request.getOrganizationalUnit())
                         .build())
-                .buildingAdministrator(User.builder().id(request.getBuildingAdministrator()).build())
                 .build();
     }
 
