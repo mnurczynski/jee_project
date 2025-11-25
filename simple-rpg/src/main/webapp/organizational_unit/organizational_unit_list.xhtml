@@ -26,15 +26,17 @@
                     </h:link>
                 </h:column>
 
-                <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('manager')}">
-                    <h:column>
+                <h:column>
+                    <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('manager')}">
+
                         <f:facet name="header">Delete</f:facet>
                         <h:form>
                             <h:commandButton styleClass="btn" value="Delete"
                                              action="#{organizationalUnitList.deleteAction(unit)}"/>
                         </h:form>
-                    </h:column>
-                </h:panelGroup>
+
+                    </h:panelGroup>
+                </h:column>
 
 
             </h:dataTable>
