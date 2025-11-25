@@ -47,7 +47,7 @@ public class BuildingList {
      */
     public BuildingsModel getBuildings() {
         if (buildings == null) {
-            buildings = factory.buildingsToModel().apply(service.findAll().get());
+            buildings = factory.buildingsToModel().apply(service.findAllForCallerPrincipal().get());
         }
         return buildings;
     }

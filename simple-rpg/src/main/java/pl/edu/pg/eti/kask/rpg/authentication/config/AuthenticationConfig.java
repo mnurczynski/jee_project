@@ -22,13 +22,13 @@ import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
  * Both form based methods required {@link LoginToContinue} configuration.
  */
 @ApplicationScoped
-@BasicAuthenticationMechanismDefinition(realmName = "Simple RPG")
-//@FormAuthenticationMechanismDefinition(
-//        loginToContinue = @LoginToContinue(
-//                loginPage = "/authentication/form/login.xhtml",
-//                errorPage = "/authentication/form/login_error.xhtml"
-//        )
-//)
+//@BasicAuthenticationMechanismDefinition(realmName = "Simple RPG")
+@FormAuthenticationMechanismDefinition(
+        loginToContinue = @LoginToContinue(
+                loginPage = "/authentication/form/login.xhtml",
+                errorPage = "/authentication/form/login_error.xhtml"
+        )
+)
 //@CustomFormAuthenticationMechanismDefinition(
 //        loginToContinue = @LoginToContinue(
 //                loginPage = "/authentication/custom/login.xhtml",
@@ -36,7 +36,7 @@ import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 //        )
 //)
 @DatabaseIdentityStoreDefinition(
-        dataSourceLookup = "jdbc/SimpleRpgCharacters",
+        dataSourceLookup = "jdbc/SimpleRpgbuildings",
         callerQuery = "select hashedPassword from users where login = ?",
         groupsQuery = "select type from users where id = (select id from users where login = ?)",
         hashAlgorithm = Pbkdf2PasswordHash.class

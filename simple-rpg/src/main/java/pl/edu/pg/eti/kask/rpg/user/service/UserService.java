@@ -8,6 +8,8 @@ import jakarta.security.enterprise.SecurityContext;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.ForbiddenException;
+import jakarta.ws.rs.NotAuthorizedException;
+import jakarta.ws.rs.NotFoundException;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.user.entity.Type;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
@@ -24,6 +26,15 @@ public class UserService {
     private final SecurityContext securityContext;
     private final Pbkdf2PasswordHash passwordHash;
     private final UserRepository repository;
+
+
+    void checkUserIsManager() {
+        if(securityContext.isCallerInRole(Type.MANAGER))
+        {
+            return;
+        };
+        throw new NotAuthorizedException("");
+    }
 
     /**
      * Hash mechanism used for storing users' passwords.
@@ -42,29 +53,29 @@ public class UserService {
 
 
     @Transactional
-    @RolesAllowed(Type.MANAGER)
     public void saveUserAvatar(UUID id, byte [] avatar)
     {
+        checkUserIsManager();
         repository.saveAvatar(id, avatar);
     }
 
-    @RolesAllowed(Type.MANAGER)
     public Optional<byte []> getUserAvatar(UUID id)
     {
+        checkUserIsManager();
         return repository.findAvatar(id);
     }
 
     @Transactional
-    @RolesAllowed(Type.MANAGER)
     public void deleteUserAvatar(UUID id)
     {
+        checkUserIsManager();
         repository.deleteAvatar(id);
     }
     /**
      * @param id user's id
      * @return container (can be empty) with user
      */
-    @RolesAllowed({Type.MANAGER, Type.BUILDING_ADMINISTRATOR})
+
     public Optional<User> find(UUID id) {
         var user = repository.find(id);
         if(securityContext.isCallerInRole(Type.MANAGER))
@@ -87,13 +98,29 @@ public class UserService {
      * @param login user's login
      * @return container (can be empty) with user
      */
-    @RolesAllowed(Type.MANAGER)
+
     public Optional<User> find(String login) {
-        return repository.findByLogin(login);
+
+        var user =  repository.findByLogin(login);
+        if(securityContext.isCallerInRole(Type.MANAGER))
+        {
+            return user;
+        }
+        if(user.isPresent())
+        {
+            if(user.get().getLogin().equals(securityContext.getCallerPrincipal().getName()))
+            {
+                return user;
+            }
+        }
+        throw new ForbiddenException();
     }
 
     @RolesAllowed(Type.MANAGER)
-    public Optional<List<User>> findAll() {return Optional.of(repository.findAll());}
+    public Optional<List<User>> findAll() {
+        checkUserIsManager();
+        return Optional.of(repository.findAll());
+    }
 
     /**
      * Saves new user. Password is hashed using configured hash algorithm.
@@ -121,6 +148,16 @@ public class UserService {
         return find(login)
                 .map(user -> passwordHash.verify(password.toCharArray(), user.getPassword()))
                 .orElse(false);
+    }
+
+    @Transactional
+    public void delete(UUID id) {
+        checkUserIsManager();
+        var user = repository.find(id);
+        if (!user.isPresent()) {
+            throw new NotFoundException("User does not exist.");
+        }
+        repository.delete(user.get());
     }
 
 }

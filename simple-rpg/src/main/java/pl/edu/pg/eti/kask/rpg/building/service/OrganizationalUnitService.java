@@ -5,6 +5,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotAuthorizedException;
 import lombok.NoArgsConstructor;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
 import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
@@ -27,6 +28,28 @@ public class OrganizationalUnitService {
     private final BuildingRepository buildingRepository;
     private final OrganizationalUnitRepository organizationalUnitRepository;
 
+    void checkUserLoggedIn() {
+        if(securityContext.isCallerInRole(Type.READ_ONLY_USER)) {
+            return;
+        }
+        if(securityContext.isCallerInRole(Type.MANAGER)) {
+            return;
+        }
+        if(securityContext.isCallerInRole(Type.BUILDING_ADMINISTRATOR)) {
+            return;
+        }
+        throw new NotAuthorizedException("");
+    }
+
+    void checkUserIsManager() {
+        if(securityContext.isCallerInRole(Type.MANAGER))
+        {
+            return;
+        };
+        throw new NotAuthorizedException("");
+    }
+
+
     @Inject
     public OrganizationalUnitService(SecurityContext securityContext, UserRepository userRepository, BuildingRepository buildingRepository, OrganizationalUnitRepository organizationalUnitRepository) {
         this.securityContext = securityContext;
@@ -35,34 +58,34 @@ public class OrganizationalUnitService {
         this.organizationalUnitRepository = organizationalUnitRepository;
     }
 
-    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
     public Optional<OrganizationalUnit> find(UUID id) {
+        checkUserLoggedIn();
         return organizationalUnitRepository.find(id);
     }
 
-    @RolesAllowed({Type.BUILDING_ADMINISTRATOR, Type.MANAGER, Type.READ_ONLY_USER})
     public Optional<List<OrganizationalUnit>> findAll() {
+        checkUserLoggedIn();
         return Optional.ofNullable(organizationalUnitRepository.findAll());
     }
 
     @Transactional
-    @RolesAllowed(Type.MANAGER)
     public void create(OrganizationalUnit unit)
     {
+        checkUserIsManager();
         organizationalUnitRepository.create(unit);
     }
 
     @Transactional
-    @RolesAllowed(Type.MANAGER)
     public void update(OrganizationalUnit unit)
     {
+        checkUserIsManager();
         organizationalUnitRepository.update(unit);
     }
 
     @Transactional
-    @RolesAllowed(Type.MANAGER)
     public void delete(UUID id)
     {
+        checkUserIsManager();
         var unit = find(id);
         unit.ifPresent(organizationalUnit -> organizationalUnitRepository.delete(organizationalUnit));
 

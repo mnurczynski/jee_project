@@ -5,15 +5,17 @@ import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.context.control.RequestContextController;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.servlet.ServletContextListener;
+import jakarta.transaction.Transactional;
 import lombok.SneakyThrows;
 import pl.edu.pg.eti.kask.rpg.building.entity.Building;
 import pl.edu.pg.eti.kask.rpg.building.entity.OrganizationalUnit;
-import pl.edu.pg.eti.kask.rpg.building.service.BuildingService;
-import pl.edu.pg.eti.kask.rpg.building.service.OrganizationalUnitService;
+import pl.edu.pg.eti.kask.rpg.building.repository.api.BuildingRepository;
+import pl.edu.pg.eti.kask.rpg.building.repository.api.OrganizationalUnitRepository;
 import pl.edu.pg.eti.kask.rpg.user.entity.Type;
 import pl.edu.pg.eti.kask.rpg.user.entity.User;
-import pl.edu.pg.eti.kask.rpg.user.service.UserService;
+import pl.edu.pg.eti.kask.rpg.user.repository.api.UserRepository;
 
 import java.io.InputStream;
 import java.time.LocalDate;
@@ -31,29 +33,33 @@ public class InitializedData implements ServletContextListener {
     /**
      * Building service.
      */
-    private final BuildingService buildingService;
+    private final BuildingRepository buildingRepository;
 
+
+    private final Pbkdf2PasswordHash passwordHash;
     /**
      * User service.
      */
-    private final UserService userService;
+    private final UserRepository userRepository;
 
     /**
      * OrganizationalUnit service.
      */
-    private final OrganizationalUnitService organizationalUnitService;
+    private final OrganizationalUnitRepository organizationalUnitRepository;
 
     private final RequestContextController requestContextController;
 
     @Inject
-    public InitializedData(BuildingService buildingService, OrganizationalUnitService organizationalUnitService, UserService userService, RequestContextController requestContextController) {
-        this.buildingService = buildingService;
-        this.organizationalUnitService = organizationalUnitService;
-        this.userService = userService;
+    public InitializedData(BuildingRepository buildingRepository, Pbkdf2PasswordHash passwordHash, UserRepository userRepository, OrganizationalUnitRepository organizationalUnitRepository, RequestContextController requestContextController) {
+        this.buildingRepository = buildingRepository;
+        this.passwordHash = passwordHash;
+        this.userRepository = userRepository;
+        this.organizationalUnitRepository = organizationalUnitRepository;
+
         this.requestContextController = requestContextController;
     }
 
-
+    @Transactional
     public void contextInitialized(@Observes @Initialized(ApplicationScoped.class) Object init) {
         init();
     }
@@ -66,14 +72,14 @@ public class InitializedData implements ServletContextListener {
     @SneakyThrows
     private void init() {
         requestContextController.activate();
-        if(userService.find("admin").isEmpty())
+        if(userRepository.findByLogin("admin").isEmpty())
         {
             User admin = User.builder()
                     .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                     .login("admin")
                     .hiringDate(LocalDate.of(1990, 10, 21))
                     .type(Type.MANAGER)
-                    .hashedPassword("adminadmin")
+                    .hashedPassword(passwordHash.generate((new String("adminadmin")).toCharArray()))
                     .build();
 
             User kevin = User.builder()
@@ -81,7 +87,7 @@ public class InitializedData implements ServletContextListener {
                     .login("Kevin")
                     .hiringDate(LocalDate.of(2010, 9, 3))
                     .type(Type.BUILDING_ADMINISTRATOR)
-                    .hashedPassword("useruser")
+                    .hashedPassword(passwordHash.generate((new String("useruser")).toCharArray()))
                     .build();
 
             User api_user = User.builder()
@@ -89,7 +95,7 @@ public class InitializedData implements ServletContextListener {
                     .login("campus map service")
                     .hiringDate(LocalDate.of(1990, 10, 21))
                     .type(Type.READ_ONLY_USER)
-                    .hashedPassword("some_api_key")
+                    .hashedPassword(passwordHash.generate((new String("some_api_key")).toCharArray()))
                     .build();
 
             User api_user_2 = User.builder()
@@ -97,13 +103,13 @@ public class InitializedData implements ServletContextListener {
                     .login("CCTV monitoring service")
                     .hiringDate(LocalDate.of(1990, 10, 21))
                     .type(Type.READ_ONLY_USER)
-                    .hashedPassword("some_other_api_key")
+                    .hashedPassword(passwordHash.generate((new String("some other api key")).toCharArray()))
                     .build();
 
-            userService.create(admin);
-            userService.create(kevin);
-            userService.create(api_user);
-            userService.create(api_user_2);
+            userRepository.create(admin);
+            userRepository.create(kevin);
+            userRepository.create(api_user);
+            userRepository.create(api_user_2);
 
             OrganizationalUnit kwestura = OrganizationalUnit.builder()
                     .id(UUID.fromString("f5875513-bf7b-4ae1-b8a5-5b70a1b90e76"))
@@ -133,10 +139,10 @@ public class InitializedData implements ServletContextListener {
                     .type(pl.edu.pg.eti.kask.rpg.building.entity.Type.INSTITUTE)
                     .build();
 
-            organizationalUnitService.create(kwestura);
-            organizationalUnitService.create(nano);
-            organizationalUnitService.create(wilis);
-            organizationalUnitService.create(oio);
+            organizationalUnitRepository.create(kwestura);
+            organizationalUnitRepository.create(nano);
+            organizationalUnitRepository.create(wilis);
+            organizationalUnitRepository.create(oio);
 
             Building gmach_b = Building.builder()
                     .id(UUID.fromString("525d3e7b-bb1f-4c13-bf17-926d1a12e4c0"))
@@ -178,10 +184,10 @@ public class InitializedData implements ServletContextListener {
                     .occupant(wilis)
                     .build();
 
-            buildingService.create(zelbet);
-            buildingService.create(oio_a);
-            buildingService.create(nano_a);
-            buildingService.create(gmach_b);
+            buildingRepository.create(zelbet);
+            buildingRepository.create(oio_a);
+            buildingRepository.create(nano_a);
+            buildingRepository.create(gmach_b);
 
         }
 

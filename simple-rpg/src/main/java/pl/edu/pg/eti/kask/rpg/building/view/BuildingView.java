@@ -63,7 +63,7 @@ public class BuildingView implements Serializable {
      * field and initialized during init of the view.
      */
     public void init() throws IOException {
-        Optional<Building> building = service.find(id);
+        Optional<Building> building = service.findForCallerPrincipal(id);
         if (building.isPresent()) {
             this.building = factory.buildingToModel().apply(building.get());
         } else {

@@ -70,7 +70,16 @@ public class BuildingPersistenceRepository implements BuildingRepository {
     }
 
     @Override
-    public Optional<List<Building>> findAllByOrganizationalUnit(OrganizationalUnit organizationalUnit) {
+    public Optional<List<Building>> findAllByOrganizationalUnit(OrganizationalUnit organizationalUnit, User user) {
+        return Optional.of(em.createQuery("select b from Building b where b.occupant = :occupant and b.buildingAdministrator = :admin", Building.class)
+                .setParameter("occupant", organizationalUnit)
+                .setParameter("admin", user)
+                .getResultList());
+
+    }
+
+    @Override
+    public Optional<List<Building>> findAllByOrganizationalUnitAdmin(OrganizationalUnit organizationalUnit) {
         return Optional.of(em.createQuery("select b from Building b where b.occupant = :occupant", Building.class)
                 .setParameter("occupant", organizationalUnit)
                 .getResultList());

@@ -8,6 +8,8 @@ import pl.edu.pg.eti.kask.rpg.building.model.BuildingModel;
 import pl.edu.pg.eti.kask.rpg.building.model.BuildingsModel;
 import pl.edu.pg.eti.kask.rpg.building.model.OrganizationalUnitModel;
 import pl.edu.pg.eti.kask.rpg.building.model.function.*;
+import pl.edu.pg.eti.kask.rpg.user.model.function.UserToModelFunction;
+import pl.edu.pg.eti.kask.rpg.user.model.function.UsersToModelFunction;
 
 import java.util.function.Function;
 
@@ -77,5 +79,18 @@ public class ModelFunctionFactory {
     public UpdateBuildingWithModelFunction updateBuilding() {
         return new UpdateBuildingWithModelFunction();
     }
+
+
+
+    public UserToModelFunction userToModel() {
+        return new UserToModelFunction();
+    }
+
+
+    public UsersToModelFunction usersToModel() {
+        return new UsersToModelFunction();
+    }
+
+
 
 }

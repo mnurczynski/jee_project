@@ -38,13 +38,26 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>character</web-resource-name>
-            <url-pattern>/character/*</url-pattern>
+            <web-resource-name>building</web-resource-name>
+            <url-pattern>/building/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>user</role-name>
+            <role-name>building_administrator</role-name>
+            <role-name>manager</role-name>
         </auth-constraint>
     </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>organizational_unit</web-resource-name>
+            <url-pattern>/organizational_unit/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>building_administrator</role-name>
+            <role-name>manager</role-name>
+        </auth-constraint>
+    </security-constraint>
+
 
     <security-constraint>
         <web-resource-collection>
@@ -52,17 +65,17 @@
             <url-pattern>/user/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>admin</role-name>
+            <role-name>manager</role-name>
         </auth-constraint>
     </security-constraint>
 
 
     <security-role>
-        <role-name>admin</role-name>
+        <role-name>manager</role-name>
     </security-role>
 
     <security-role>
-        <role-name>user</role-name>
+        <role-name>building_administrator</role-name>
     </security-role>
 
 </web-app>

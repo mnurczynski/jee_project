@@ -23,6 +23,7 @@ public class UpdateBuildingWithModelFunction implements BiFunction<Building, Bui
                 .number(request.getNumber())
                 .area(entity.getArea())
                 .maximumOccupancy(request.getMaximumOccupancy())
+                .buildingAdministrator(entity.getBuildingAdministrator())
                 .occupant(OrganizationalUnit.builder()
                         .id(entity.getOccupant().getId())
                         .build())

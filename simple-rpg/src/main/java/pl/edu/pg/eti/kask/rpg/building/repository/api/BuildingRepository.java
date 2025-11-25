@@ -17,8 +17,8 @@ public interface BuildingRepository extends Repository<Building, UUID> {
     Optional<List<Building>> findAllByUser(User user);
 
 
-    Optional<List<Building>> findAllByOrganizationalUnit(OrganizationalUnit organizationalUnit);
+    Optional<List<Building>> findAllByOrganizationalUnit(OrganizationalUnit organizationalUnit, User user);
 
 
-
+    public Optional<List<Building>> findAllByOrganizationalUnitAdmin(OrganizationalUnit organizationalUnit);
 }

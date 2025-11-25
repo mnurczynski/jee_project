@@ -144,7 +144,7 @@ public class BuildingCreate implements Serializable {
      * @return buildings list navigation case
      */
     public String saveAction() {
-        buildingService.create(factory.modelToBuilding().apply(building));
+        buildingService.createForCallerPrincipal(factory.modelToBuilding().apply(building));
         conversation.end();
         return "/building/building_list.xhtml?faces-redirect=true";
     }

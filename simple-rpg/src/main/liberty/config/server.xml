@@ -15,28 +15,28 @@
     <application type="war" location="simple-rpg-1.0-SNAPSHOT.war">
         <application-bnd>
             <security-role name="manager">
-                <group name="manager" access-id="group:jdbc/SimpleRpgCharacters/manager"/>
+                <group name="manager" access-id="group:jdbc/SimpleRpgbuildings/manager"/>
                 <run-as userid="admin"/>
             </security-role>
             <security-role name="building_administrator">
-                <group name="building_administrator" access-id="group:jdbc/SimpleRpgCharacters/building_administrator"/>
+                <group name="building_administrator" access-id="group:jdbc/SimpleRpgbuildings/building_administrator"/>
             </security-role>
             <security-role name="read_only_user">
-                <group name="read_only_user" access-id="group:jdbc/SimpleRpgCharacters/read_only_user"/>
+                <group name="read_only_user" access-id="group:jdbc/SimpleRpgbuildings/read_only_user"/>
             </security-role>
         </application-bnd>
     </application>
 
 
-    <dataSource id="SimpleRpgCharactersDataSource" jndiName="jdbc/SimpleRpgCharacters">
+    <dataSource id="SimpleRpgbuildingsDataSource" jndiName="jdbc/SimpleRpgbuildings">
         <jdbcDriver javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
                     javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
                     javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
                     libraryRef="H2JDBCLib"/>
-        <!--        <properties URL="jdbc:h2:/tmp/simple-rpg-characters;AUTO_SERVER=TRUE;TRACE_LEVEL_SYSTEM_OUT=2"/>-->
-        <!--        <properties URL="jdbc:h2:/tmp/simple-rpg-characters;AUTO_SERVER=TRUE"/>-->
-        <!--        <properties URL="jdbc:h2:mem:simple-rpg-characters;TRACE_LEVEL_SYSTEM_OUT=2"/>-->
-        <properties URL="jdbc:h2:mem:simple-rpg-characters"/>
+        <!--        <properties URL="jdbc:h2:/tmp/simple-rpg-buildings;AUTO_SERVER=TRUE;TRACE_LEVEL_SYSTEM_OUT=2"/>-->
+        <!--        <properties URL="jdbc:h2:/tmp/simple-rpg-buildings;AUTO_SERVER=TRUE"/>-->
+        <!--        <properties URL="jdbc:h2:mem:simple-rpg-buildings;TRACE_LEVEL_SYSTEM_OUT=2"/>-->
+        <properties URL="jdbc:h2:mem:simple-rpg-buildings"/>
 
     </dataSource>
 

@@ -63,7 +63,7 @@ public class BuildingEdit implements Serializable {
      * field and initialized during init of the view.
      */
     public void init() throws IOException {
-        Optional<Building> building = service.find(id);
+        Optional<Building> building = service.findForCallerPrincipal(id);
         if (building.isPresent()) {
             this.building = factory.buildingToEditModel().apply(building.get());
         } else {
@@ -77,7 +77,7 @@ public class BuildingEdit implements Serializable {
      * @return navigation case to the same page
      */
     public String saveAction() {
-        service.update(factory.updateBuilding().apply(service.find(id).orElseThrow(), building));
+        service.update(factory.updateBuilding().apply(service.findForCallerPrincipal(id).orElseThrow(), building));
         return "/building/building_list.xhtml?faces-redirect=true";
     }
 
